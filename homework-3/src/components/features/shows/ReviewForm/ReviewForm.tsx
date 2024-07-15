@@ -25,10 +25,8 @@ export default function ReviewForm({ onAddReview }: IReviewFormProps) {
 
   function styleRatingStars(currentRating: number) {
     const stars = starsParent.current!.childNodes as NodeListOf<HTMLElement>;
+    resetingRatingStars();
     
-    stars.forEach((star) => {
-      (star as HTMLElement).style.color = "#fff";
-    });
     const selectedIndex = 5 - currentRating;
     for (let i = 4; i >= selectedIndex; i--) {
       stars[i].style.color = "gold";
@@ -59,6 +57,17 @@ export default function ReviewForm({ onAddReview }: IReviewFormProps) {
     commentEl.current!.value = "";
     setComment("");
     setRating(0);
+  }
+
+  function resetingRatingStars() {
+    const stars = starsParent.current
+      ?.childNodes as NodeListOf<HTMLLabelElement>;
+
+    stars.forEach((star) => {
+      star.style.color = "#fff";
+      const inputElement = star.childNodes[0] as HTMLInputElement;
+      inputElement.checked = false;
+    });
   }
 
   return (
