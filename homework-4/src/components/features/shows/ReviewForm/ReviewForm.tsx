@@ -4,35 +4,13 @@ import styles from "./ReviewForm.module.css";
 import { IReview, IReviewFormProps } from "@/typings/review";
 import StarIcon from "../StarIcon/StarIcon";
 import { v4 as uuidv4 } from "uuid";
-import {
-  Button,
-  chakra,
-  Flex,
-  FormControl,
-  FormErrorMessage,
-  Textarea,
-  Input,
-  useToast,
-} from "@chakra-ui/react";
+import { Button, chakra, Flex, FormControl, FormErrorMessage, Textarea, Input, useToast } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 
 interface IFormData {
   comment: string;
   rating: number;
 }
-
-const schema = yup
-  .object({
-    comment: yup.string().required("Comment is required"),
-    rating: yup
-      .number()
-      .required("Rating is required")
-      .min(1, "Rating must be at least 1 star")
-      .max(5, "Rating must be at most 5 stars"),
-  })
-  .required();
 
 export default function ReviewForm({ onAddReview }: IReviewFormProps) {
   const {
@@ -42,9 +20,8 @@ export default function ReviewForm({ onAddReview }: IReviewFormProps) {
     setValue,
     reset,
     trigger,
-  } = useForm<IFormData>({
-    resolver: yupResolver(schema),
-  });
+  } = useForm<IFormData>();
+
   const [rating, setRating] = useState(0);
   const starsParent = useRef<HTMLDivElement>(null);
   const toast = useToast();
@@ -144,7 +121,11 @@ export default function ReviewForm({ onAddReview }: IReviewFormProps) {
       >
         <Input
           type="hidden"
-          {...register("rating")}
+          {...register("rating", {
+            required: "Rating is required",
+            min: { value: 1, message: "Rating must be between 1 and 5" },
+            max: { value: 5, message: "Rating must be between 1 and 5" }
+          })}
           value={rating}
         />
         <Flex

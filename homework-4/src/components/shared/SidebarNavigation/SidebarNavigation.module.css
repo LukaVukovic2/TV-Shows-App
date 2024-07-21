@@ -14,17 +14,19 @@
   margin-bottom: calc(100vh - 60px);
 }
 
-.navLink, .logoutBtn{
+.navLink,
+.logoutBtn {
   text-align: center;
   padding: 5px 15px;
   border-radius: 12px;
 }
 
-.navLink:hover, .logoutBtn:hover{
+.navLink:hover,
+.logoutBtn:hover {
   font-weight: bold;
 }
 
-.active{
+.active {
   background-color: rgb(55, 22, 135);
 }
 

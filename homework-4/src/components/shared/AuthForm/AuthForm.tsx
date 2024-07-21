@@ -1,15 +1,5 @@
 "use client";
-import {
-  Alert,
-  AlertIcon,
-  chakra,
-  Flex,
-  FormControl,
-  Input,
-  FormErrorMessage,
-  Button,
-  Text,
-  InputLeftElement,
+import { Alert, AlertIcon, chakra, Flex, FormControl, Input, FormErrorMessage, Button, Text, InputLeftElement, 
   InputGroup,
 } from "@chakra-ui/react";
 import { useState } from "react";
@@ -18,8 +8,6 @@ import LogoImage from "@/components/core/LogoImage/LogoImage";
 import styles from "./AuthForm.module.css";
 import Link from "next/link";
 import IFormData from "@/typings/form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import useSWRMutation from "swr/mutation";
 import { mutator } from "@/fetchers/mutators";
 import AuthRedirect from "../AuthRedirect/AuthRedirect";
@@ -27,36 +15,21 @@ import { useUser } from "@/hooks/useUser";
 import PasswordInput from "@/components/core/PasswordInput/PasswordInput";
 
 interface IAuthFormProps {
-  schema: yup.ObjectSchema<
-    {
-      email: string;
-      password: string;
-      password_confirmation?: string | undefined;
-    },
-    yup.AnyObject,
-    {
-      email: undefined;
-      password: undefined;
-      password_confirmation?: undefined;
-    },
-    ""
-  >;
   isLogin: boolean;
   swrKey: string;
 }
 
-export default function AuthForm({ schema, isLogin, swrKey }: IAuthFormProps) {
+export default function AuthForm({isLogin, swrKey }: IAuthFormProps) {
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
-  } = useForm<IFormData>({
-    resolver: yupResolver(schema),
-  });
+    watch
+  } = useForm<IFormData>();
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState(false);
-
+  
   const { mutate } = useUser();
   const { trigger } = useSWRMutation(swrKey, mutator, {
     onSuccess: (resData) => {
@@ -69,17 +42,18 @@ export default function AuthForm({ schema, isLogin, swrKey }: IAuthFormProps) {
       reset();
     },
   });
-
+  const password = watch('password', '');
+  
   const onSubmit = async (data: IFormData) => {
     await trigger(data);
   };
-
+  
   return (
     <>
       <AuthRedirect
         to="/all-shows"
         isLoggedIn={true}
-      />
+        />
       {error && (
         <Alert
           status="error"
@@ -116,7 +90,13 @@ export default function AuthForm({ schema, isLogin, swrKey }: IAuthFormProps) {
             >
               <InputGroup>
                 <Input
-                  {...register("email", { required: "true" })}
+                  {...register("email", { 
+                    required: "Email is required",
+                    pattern: {
+                      value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                      message: 'Invalid email address',
+                    }
+                  })}
                   type="email"
                   placeholder="Email"
                 />
@@ -134,7 +114,13 @@ export default function AuthForm({ schema, isLogin, swrKey }: IAuthFormProps) {
               isDisabled={isSubmitting}
             >
               <PasswordInput
-                register={register("password", { required: "true" })}
+                register={register("password", { 
+                  required: "Password is required",
+                  minLength: {
+                    value: 8,
+                    message: "Password must be at least 8 characters"
+                  },
+                })}
                 placeholder="Password"
               />
               {errors.password && (
@@ -148,7 +134,11 @@ export default function AuthForm({ schema, isLogin, swrKey }: IAuthFormProps) {
                 isDisabled={isSubmitting}
               >
                 <PasswordInput
-                  register={register("password_confirmation", {required: "true"})}
+                  register={register("password_confirmation", {
+                    required: "Password confirmation is required",
+                    validate: value =>
+                      value == password || "Passwords must match"
+                  })}
                   placeholder="Confirm password"
                 />
                 {errors.password_confirmation && (
