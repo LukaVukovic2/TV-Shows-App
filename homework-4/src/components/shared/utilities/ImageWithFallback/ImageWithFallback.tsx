@@ -4,7 +4,7 @@ import { Image } from "@chakra-ui/react";
 interface ImageWithFallbackProps {
   src: string | undefined;
   alt: string;
-  width: number;
+  width: number | string;
   defaultHeight: string;
   defaultWidth: string;
   className?: string;

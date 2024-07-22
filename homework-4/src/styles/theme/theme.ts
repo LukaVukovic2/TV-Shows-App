@@ -7,10 +7,14 @@ import radii from "./foundations/radius";
 import Input from "./components/input";
 
 const colors = {
-  lightpurple: "#8D5CE5",
-  purple: "#371687",
-  darkpurple: "#1B004C",
-  pink: "#FF2498"
+  lightPurple: "#8D5CE5",
+  purple: {
+    500: '#6B46C1',
+  },
+  darkPurple: "#1B004C",
+  error: "#FF2498",
+  white: "#fff",
+  purple2: "#371687"
 }
 
 const fonts = {
@@ -22,7 +26,7 @@ const styles = {
   global: {
     "html, body": {
       color: "white",
-      bg: colors.darkpurple,
+      bg: colors.darkPurple,
     },
     "#body": {
       m: 0,

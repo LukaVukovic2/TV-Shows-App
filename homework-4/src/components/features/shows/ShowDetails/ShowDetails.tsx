@@ -1,4 +1,4 @@
-import { Box, Card, Heading, Text, Flex } from "@chakra-ui/react";
+import { Box, Card, Heading, Text, Flex, chakra } from "@chakra-ui/react";
 import React from "react";
 import ImageWithFallback from "@/components/shared/utilities/ImageWithFallback/ImageWithFallback";
 import styles from "./ShowDetails.module.css";
@@ -17,35 +17,36 @@ export default function ShowDetails({ show, tempShow }: IShowDetailsProps) {
     <Card
       bg="white"
       color="navy"
-      className={styles.showSection}
+      overflow="hidden"
     >
-      <Flex className={styles.showFlex}>
+      <div className={styles.imgContainer}>
         <ImageWithFallback
           className={styles.showImage}
           src={image_url}
           alt={title}
-          width={200}
+          width="100%"
           defaultHeight="960"
           defaultWidth="540"
         />
-        <Box
-          className={styles.showInfo}
-          paddingLeft="4"
-        >
+      </div>
+      <Flex className={styles.showFlex} justifyContent="space-between" p={10}>
+        <chakra.div flex={1}>
           <Heading size="lg">{title}</Heading>
           <i
-            className="fa-regular fa-star fa-lg"
-            style={{ color: "#FFD43B" }}
+            className="fa-solid fa-star fa-md"
           ></i>
           {!!noOfReviews && (
             <span className="averageRating">
               {" "}
-              {(sumOfRatings / noOfReviews).toFixed(1)}/5 {`(${noOfReviews})`}{" "}
+              {(sumOfRatings / noOfReviews).toFixed(1)}/5
             </span>
           )}
           {!noOfReviews && <span> No ratings</span>}
+
+        </chakra.div>
+        <chakra.div flex={1}>
           <Text>{description}</Text>
-        </Box>
+        </chakra.div>
       </Flex>
     </Card>
   );

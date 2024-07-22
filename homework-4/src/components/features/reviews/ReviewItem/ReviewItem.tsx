@@ -38,18 +38,11 @@ export default function ReviewItem({review, onDeleteReview}: IReviewItemProps) {
             className={styles.reviewedRated}
           >
             {Array.from({ length: 5 }, (_, index) => {
-              if (index >= review.rating) {
+              if (index < review.rating) {
                 return (
                   <i
                     key={index}
-                    className="fa-regular fa-star"
-                  ></i>
-                );
-              } else {
-                return (
-                  <i
-                    key={index}
-                    className={`${styles.reviewedRating} fa-regular fa-star`}
+                    className="fa-solid fa-star"
                   ></i>
                 );
               }

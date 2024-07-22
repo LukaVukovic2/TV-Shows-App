@@ -75,13 +75,6 @@ export default function MainLayout({ tvShow }: { tvShow: IShow }) {
   return (
     <main className={styles.main}>
       <ShowDetails show={tvShow} tempShow={tempShow} />
-      <Heading
-        as="h2"
-        size="lg"
-        my={3}
-      >
-        Reviews
-      </Heading>
       <ShowReviewSection
         reviews={reviewArr}
         show={tvShow}

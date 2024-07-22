@@ -6,6 +6,7 @@ import LoadingSpinner from "@/components/core/LoadingSpinner/LoadingSpinner";
 import { swrKeys } from "@/fetchers/swrKeys";
 import { fetcher } from "@/fetchers/fetcher";
 import { IShow } from "@/typings/show";
+import { Flex } from "@chakra-ui/react";
 
 interface ApiResponse {
   show: IShow;
@@ -25,8 +26,8 @@ export default function ShowDetailsPage() {
   }
 
   return (
-    <div>
+    <Flex justifyContent="flex-end">
       {show && <MainLayout tvShow={show} />}
-    </div>
+    </Flex>
   );
 }

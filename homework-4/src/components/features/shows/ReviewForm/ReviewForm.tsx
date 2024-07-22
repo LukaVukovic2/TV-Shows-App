@@ -4,7 +4,7 @@ import styles from "./ReviewForm.module.css";
 import { IReview, IReviewFormProps } from "@/typings/review";
 import StarIcon from "../StarIcon/StarIcon";
 import { v4 as uuidv4 } from "uuid";
-import { Button, chakra, Flex, FormControl, FormErrorMessage, Textarea, Input, useToast } from "@chakra-ui/react";
+import { Button, chakra, Flex, FormControl, FormErrorMessage, Textarea, Input, useToast, Text } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { useUser } from "@/hooks/useUser";
 import { IUser } from "@/fetchers/user";
@@ -30,7 +30,7 @@ export default function ReviewForm({ handleReview, show_id, review, mode }: IRev
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting, isValid },
     setValue,
     reset,
     trigger,
@@ -104,11 +104,13 @@ export default function ReviewForm({ handleReview, show_id, review, mode }: IRev
           {errors.comment && errors.comment.message}
         </FormErrorMessage>
       </FormControl>
-
+      <Flex>
       <FormControl
         isInvalid={!!errors.rating}
         isDisabled={isSubmitting}
       >
+        <Flex>
+        <Text>Rating</Text>
         <Input
           type="hidden"
           {...register("rating", {
@@ -133,9 +135,11 @@ export default function ReviewForm({ handleReview, show_id, review, mode }: IRev
             />
           ))}
         </Flex>
+        </Flex>
         <FormErrorMessage>
           {errors.rating && errors.rating.message}
         </FormErrorMessage>
+
       </FormControl>
 
       {
@@ -146,13 +150,14 @@ export default function ReviewForm({ handleReview, show_id, review, mode }: IRev
               className="reviewPostBtn"
               type="submit"
               tabIndex={3}
-              isDisabled={isSubmitting}
+              isDisabled={!isValid || isSubmitting}
             >
               Post
             </Button>
           </div>
         )
       }
+      </Flex>
     </chakra.form>
   );
 }
