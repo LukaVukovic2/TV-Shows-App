@@ -1,10 +1,11 @@
 export async function fetcher<T>(input: string | URL | globalThis.Request, init?: RequestInit): Promise<T> {
   try {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
     const headers = {
       ...init?.headers,
-      uid: localStorage.getItem('uid') || '',
-      client: localStorage.getItem('client') || '',
-      'access-token': localStorage.getItem('access-token') || '',
+      uid: user?.uid,
+      client: user?.client,
+      'access-token': user?.accessToken,
     };
     const response = await fetch(input, { ...init, headers });
 

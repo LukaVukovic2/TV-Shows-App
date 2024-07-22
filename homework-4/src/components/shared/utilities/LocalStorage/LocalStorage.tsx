@@ -13,7 +13,5 @@ export function removeLocalStorageItem(){
 }
 
 export function clearLocalStorage() {
-  localStorage.removeItem("uid");
-  localStorage.removeItem("access-token");
-  localStorage.removeItem("client");
+  localStorage.removeItem("user");
 }

@@ -10,14 +10,15 @@ export async function mutator(url: string, { arg }: { arg: IFormData }) {
     },
     body: JSON.stringify(arg)
   })
-  const client = response.headers.get('client');
-  const accessToken = response.headers.get('access-token');
-  const uid = response.headers.get('uid');
   
-  if (client && accessToken && uid) {
-    localStorage.setItem('client', client);
-    localStorage.setItem('access-token', accessToken);
-    localStorage.setItem('uid', uid);
+  const user = {
+    client: response.headers.get('client'),
+    accessToken: response.headers.get('access-token'),
+    uid: response.headers.get('uid')
+  }
+
+  if (user) {
+    localStorage.setItem('user', JSON.stringify(user));
   }
 
   if (!response.ok) {
