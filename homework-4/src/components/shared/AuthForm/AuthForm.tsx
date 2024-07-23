@@ -49,7 +49,7 @@ export default function AuthForm({ isLogin, swrKey }: IAuthFormProps) {
   return (
     <>
       <AuthRedirect
-        to="/all-shows"
+        to="/all-shows" 
         isLoggedIn={true}
       />
       {error && (
@@ -146,13 +146,14 @@ export default function AuthForm({ isLogin, swrKey }: IAuthFormProps) {
               </FormControl>
             )}
             <Button
+              fontSize="sm"
               type="submit"
               isLoading={isSubmitting}
               isDisabled={isSubmitting}
             >
               {!isLogin ? "Sign up" : "Log in"}
             </Button>
-            <Text>
+            <Text fontSize="sm">
               {isLogin && (
                 <>
                   {`Don't have an account?`}
@@ -170,7 +171,6 @@ export default function AuthForm({ isLogin, swrKey }: IAuthFormProps) {
                 </>
               )}
             </Text>
-
           </Flex>
         </chakra.form>
       )}

@@ -1,5 +1,5 @@
 "use client";
-import { Button, Flex, Text } from "@chakra-ui/react";
+import { Button, Flex } from "@chakra-ui/react";
 import { usePathname } from "next/navigation";
 import NextLink from "next/link";
 import LogoImage from "@/components/core/LogoImage/LogoImage";
@@ -34,6 +34,8 @@ export default function SidebarNavigation() {
             <Button
               as={NextLink}
               variant={`${path === item.path ? "selected" : "outlined"}`}
+              fontSize="2xl"
+              fontWeight="regular"
               href={item.path}
               key={index}
             >
@@ -44,13 +46,13 @@ export default function SidebarNavigation() {
       </nav>
       <Flex justify="center">
         <Button
+          fontSize="xl"
           display="inline-block"
           variant="outlined"
           onClick={onLogout}
         >
           Log out
         </Button>
-
       </Flex>
     </Flex>
   );

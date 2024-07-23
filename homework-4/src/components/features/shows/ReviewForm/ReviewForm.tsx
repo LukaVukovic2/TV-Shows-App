@@ -115,20 +115,19 @@ export default function ReviewForm({
           id="reviewComment"
           placeholder={mode == "create" ? "Add review" : "Edit review"}
           defaultValue={review?.comment}
-          rows={3}
           tabIndex={1}
         ></Textarea>
         <FormErrorMessage>
           {errors.comment && errors.comment.message}
         </FormErrorMessage>
       </FormControl>
-      <Flex>
+      <Flex alignItems="center">
         <FormControl
           isInvalid={!!errors.rating}
           isDisabled={isSubmitting}
         >
-          <Flex gap={2.5}>
-            <Text>Rating</Text>
+          <Flex gap={2.5} alignItems="center">
+            <Text fontSize="xl">Rating</Text>
             <Input
               type="hidden"
               {...register("rating", {
@@ -162,6 +161,7 @@ export default function ReviewForm({
         {mode == "create" && (
           <div>
             <Button
+              fontSize="sm"
               form="create"
               className="reviewPostBtn"
               type="submit"

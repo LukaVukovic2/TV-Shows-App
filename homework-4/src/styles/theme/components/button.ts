@@ -6,7 +6,6 @@ const Button = defineStyleConfig({
   },
   sizes: {
     md: {
-      fontSize: "md",
       h: "auto"
     },
   },

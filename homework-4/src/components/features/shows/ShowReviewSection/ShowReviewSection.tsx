@@ -7,7 +7,7 @@ import { Flex, Heading, chakra } from "@chakra-ui/react";
 export default function ReviewContainer({reviews, show, onAddReview, onDeleteReview} : IReviewProps){
   return (
     <Flex py={10}>
-      <Heading width={175}>Reviews</Heading>
+      <Heading width={175} fontSize="2xl">Reviews</Heading>
       <chakra.div flex={1}>
         <ReviewForm handleReview={onAddReview} show_id={show.id} mode="create"/>
         <ReviewList reviews={reviews} onDeleteReview={onDeleteReview}/>

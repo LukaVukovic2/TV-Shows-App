@@ -19,16 +19,16 @@ const cardStyle = {
         color: 'purple'
       }
     },
-    huge: {
-      container: {
-        bg: 'purple',
-        color: '#fff',
-      }
-    },
     medium: {
       container: {
         bg: 'purple2',
         color: 'white',
+      }
+    },
+    huge: {
+      container: {
+        bg: 'purple',
+        color: '#fff',
       }
     },
   }

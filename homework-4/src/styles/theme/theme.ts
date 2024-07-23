@@ -3,8 +3,9 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/700.css";
 import Button from "./components/button";
 import Card from "./components/card";
-import radii from "./foundations/radius";
 import Input from "./components/input";
+import radii from "./foundations/radius";
+import Heading from "./components/heading";
 
 const colors = {
   lightPurple: "#8D5CE5",
@@ -12,37 +13,68 @@ const colors = {
   darkPurple: "#1B004C",
   error: "#FF2498",
   white: "#fff",
-  purple2: "#371687"
-}
+  purple2: "#371687",
+};
 
-const fonts = {
-  body: "Roboto, sans-serif",
-  heading: "Roboto, sans-serif"
-}
+const typography = {
+  fonts: {
+    heading: "Roboto, Arial, sans-serif",
+    body: "Roboto, Arial, sans-serif",
+  },
+  fontSizes: {
+    xs: "12px",
+    sm: "14px",
+    md: "16px",
+    lg: "18px",
+    xl: "20px",
+    "2xl": "24px",
+    "3xl": "28px",
+    "4xl": "32px",
+    "5xl": "40px",
+    "6xl": "52px",
+  },
+  fontWeights: {
+    regular: 400,
+    bolder: 500,
+    bold: 700,
+  },
+};
 
 const styles = {
   global: {
     "html, body": {
       color: "white",
-      bg: colors.darkPurple,
+      bg: "darkPurple",
     },
     "#body": {
       m: 0,
       p: 0,
-      color: "#fff",
+      color: "white",
       position: "relative",
       minHeight: "100vh",
-    }
+    },
   },
 };
 
+const breakpoints = {
+  sm: "23.4375em",
+  md: "48em",
+  lg: "62em",
+  xl: "80em",
+};
+
+
 const theme = extendTheme({
+  breakpoints,
   components: {
     Button,
     Card,
-    Input
+    Input,
+    Heading
   },
-  fonts,
+  fonts: typography.fonts,
+  fontSizes: typography.fontSizes,
+  fontWeights: typography.fontWeights,
   colors,
   radii,
   styles

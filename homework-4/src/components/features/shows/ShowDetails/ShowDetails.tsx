@@ -1,4 +1,4 @@
-import { Box, Card, Heading, Text, Flex, chakra } from "@chakra-ui/react";
+import { Box, Card, Heading, Text, Flex, chakra, useBreakpointValue } from "@chakra-ui/react";
 import React from "react";
 import ImageWithFallback from "@/components/shared/utilities/ImageWithFallback/ImageWithFallback";
 import styles from "./ShowDetails.module.css";
@@ -10,6 +10,7 @@ interface IShowDetailsProps {
 }
 
 export default function ShowDetails({ show, tempShow }: IShowDetailsProps) {
+  const variant = useBreakpointValue({ sm: "mobile", md: "tablet", lg: "web" });
   const { title, description, image_url } = show;
   const { sumOfRatings, noOfReviews } = tempShow;
 
@@ -29,23 +30,33 @@ export default function ShowDetails({ show, tempShow }: IShowDetailsProps) {
           defaultWidth="540"
         />
       </div>
-      <Flex className={styles.showFlex} justifyContent="space-between" p={10}>
+      <Flex
+        className={styles.showFlex}
+        justifyContent="space-between"
+        p={10}
+      >
         <chakra.div flex={1}>
-          <Heading size="lg">{title}</Heading>
-          <i
-            className="fa-solid fa-star fa-md"
-          ></i>
+          <Heading
+            variant={variant}
+            fontWeight="bold"
+          >
+            {title}
+          </Heading>
           {!!noOfReviews && (
-            <span className="averageRating">
-              {" "}
-              {(sumOfRatings / noOfReviews).toFixed(1)}/5
-            </span>
+            <>
+              <Text
+                className="averageRating"
+                fontSize={["xl", "2xl"]}
+              >
+                <i className="fa-solid fa-star fa-md"></i>{" "}
+                {(sumOfRatings / noOfReviews).toFixed(1)}/5
+              </Text>
+            </>
           )}
           {!noOfReviews && <span> No ratings</span>}
-
         </chakra.div>
         <chakra.div flex={1}>
-          <Text>{description}</Text>
+          <Text fontSize={["sm", "md", "xl"]}>{description}</Text>
         </chakra.div>
       </Flex>
     </Card>

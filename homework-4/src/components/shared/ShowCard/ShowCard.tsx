@@ -11,7 +11,7 @@ export default function ShowCard({ show }: { show: IShow }) {
       passHref
       overflow="hidden"
       variant="secondary"
-      w= "240px"
+      w="240px"
     >
       <CardHeader p={0}>
         <ImageWithFallback
@@ -23,8 +23,8 @@ export default function ShowCard({ show }: { show: IShow }) {
         />
       </CardHeader>
       <CardBody>
-        <Heading size="s">{show.title}</Heading>
-        <Text>
+        <Heading fontSize="lg">{show.title}</Heading>
+        <Text fontSize="md">
           <i
             className="fa-regular fa-star fa-md"
             style={{ color: "#FFD43B" }}
