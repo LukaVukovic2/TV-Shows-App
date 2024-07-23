@@ -13,21 +13,24 @@ const cardStyle = {
     }
   }),
   variants: {
-    primary: {
+    small: {
+      container: {
+        bg: '#fff',
+        color: 'purple'
+      }
+    },
+    huge: {
       container: {
         bg: 'purple',
         color: '#fff',
-        w: "500px",
-        p: 14
       }
     },
-    secondary: {
+    medium: {
       container: {
-        bg: '#fff',
-        color: 'purple',
-        w: "240px"
+        bg: 'purple2',
+        color: 'white',
       }
-    }
+    },
   }
 }
 const Card = defineMultiStyleConfig(cardStyle)

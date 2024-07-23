@@ -17,7 +17,7 @@ export default function ScrollToTopButton() {
         top: 557,
         right: 15,
         gap: 0,
-        opacity: 1,
+        opacity: 0,
         backgroundColor: "purple",
         borderRadius: "50%",
         cursor: "pointer",

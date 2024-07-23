@@ -4,25 +4,43 @@ import styles from "./ReviewForm.module.css";
 import { IReview, IReviewFormProps } from "@/typings/review";
 import StarIcon from "../StarIcon/StarIcon";
 import { v4 as uuidv4 } from "uuid";
-import { Button, chakra, Flex, FormControl, FormErrorMessage, Textarea, Input, useToast, Text } from "@chakra-ui/react";
+import {
+  Button,
+  chakra,
+  Flex,
+  FormControl,
+  FormErrorMessage,
+  Textarea,
+  Input,
+  useToast,
+  Text,
+} from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { useUser } from "@/hooks/useUser";
 import { IUser } from "@/fetchers/user";
-import { resetingRatingStars, styleRatingStars } from "@/components/shared/utilities/RatingStarsStyle/RatingStarsStyle";
+import {
+  resetingRatingStars,
+  styleRatingStars,
+} from "@/components/shared/utilities/RatingStarsStyle/RatingStarsStyle";
 
 interface IFormData {
   comment: string;
   rating: number;
 }
-interface IApiResponse{
+interface IApiResponse {
   user: IUser;
 }
 
-export default function ReviewForm({ handleReview, show_id, review, mode }: IReviewFormProps) {
+export default function ReviewForm({
+  handleReview,
+  show_id,
+  review,
+  mode,
+}: IReviewFormProps) {
   useEffect(() => {
     styleRatingStars(starsParent, review?.rating || 0);
   }, []);
-  
+
   const [rating, setRating] = useState(review?.rating);
   const { data } = useUser() as { data: IApiResponse };
   const starsParent = useRef<HTMLDivElement>(null);
@@ -37,7 +55,7 @@ export default function ReviewForm({ handleReview, show_id, review, mode }: IRev
   } = useForm<IFormData>({
     defaultValues: {
       rating: review?.rating || 0,
-    }
+    },
   });
 
   function onRatingInputSelection(event: React.ChangeEvent<HTMLInputElement>) {
@@ -61,8 +79,8 @@ export default function ReviewForm({ handleReview, show_id, review, mode }: IRev
       user: {
         id: data.user.id,
         email: data.user.email,
-        image_url: data.user.image_url
-      }
+        image_url: data.user.image_url,
+      },
     };
     handleReview(newReview);
     setRating(0);
@@ -95,7 +113,7 @@ export default function ReviewForm({ handleReview, show_id, review, mode }: IRev
           bg="white"
           className={styles.reviewComment}
           id="reviewComment"
-          placeholder={mode == 'create' ? 'Add review' : 'Edit review'}
+          placeholder={mode == "create" ? "Add review" : "Edit review"}
           defaultValue={review?.comment}
           rows={3}
           tabIndex={1}
@@ -105,45 +123,43 @@ export default function ReviewForm({ handleReview, show_id, review, mode }: IRev
         </FormErrorMessage>
       </FormControl>
       <Flex>
-      <FormControl
-        isInvalid={!!errors.rating}
-        isDisabled={isSubmitting}
-      >
-        <Flex>
-        <Text>Rating</Text>
-        <Input
-          type="hidden"
-          {...register("rating", {
-            required: "Rating is required",
-            min: { value: 1, message: "Rating must be between 1 and 5" },
-            max: { value: 5, message: "Rating must be between 1 and 5" }
-          })}
-          value={rating || 0}
-        />
-        <Flex
-          className={styles.reviewRating}
-          id="reviewRating"
-          ref={starsParent as React.RefObject<HTMLDivElement>}
+        <FormControl
+          isInvalid={!!errors.rating}
+          isDisabled={isSubmitting}
         >
-          {Array.from({ length: 5 }).map((_, index) => (
-            <StarIcon
-              key={index}
-              label="rating"
-              value={5 - index}
-              onBlur={onRatingInputSelection}
-              onChange={onRatingChange}
+          <Flex gap={2.5}>
+            <Text>Rating</Text>
+            <Input
+              type="hidden"
+              {...register("rating", {
+                required: "Rating is required",
+                min: { value: 1, message: "Rating must be between 1 and 5" },
+                max: { value: 5, message: "Rating must be between 1 and 5" },
+              })}
+              value={rating || 0}
             />
-          ))}
-        </Flex>
-        </Flex>
-        <FormErrorMessage>
-          {errors.rating && errors.rating.message}
-        </FormErrorMessage>
+            <Flex
+              className={styles.reviewRating}
+              id="reviewRating"
+              ref={starsParent as React.RefObject<HTMLDivElement>}
+            >
+              {Array.from({ length: 5 }).map((_, index) => (
+                <StarIcon
+                  key={index}
+                  label="rating"
+                  value={5 - index}
+                  onBlur={onRatingInputSelection}
+                  onChange={onRatingChange}
+                />
+              ))}
+            </Flex>
+          </Flex>
+          <FormErrorMessage>
+            {errors.rating && errors.rating.message}
+          </FormErrorMessage>
+        </FormControl>
 
-      </FormControl>
-
-      {
-        mode == 'create' && (
+        {mode == "create" && (
           <div>
             <Button
               form="create"
@@ -155,8 +171,7 @@ export default function ReviewForm({ handleReview, show_id, review, mode }: IRev
               Post
             </Button>
           </div>
-        )
-      }
+        )}
       </Flex>
     </chakra.form>
   );

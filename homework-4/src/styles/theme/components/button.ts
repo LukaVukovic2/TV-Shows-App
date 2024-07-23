@@ -3,28 +3,49 @@ import { defineStyleConfig } from "@chakra-ui/react";
 const Button = defineStyleConfig({
   baseStyle: {
     borderRadius: "buttonRadius",
-    textTransform: "uppercase"
   },
   sizes: {
     md: {
       fontSize: "md",
-      px: 47,
-      py: 19,
       h: "auto"
-    }
+    },
   },
   variants: {
-    solid: {
+    contained: {
       bg: "#fff",
-      color: "#371687",
+      color: "purple",
+      textTransform: "uppercase",
+      px: 47,
+      py: 19,
       _hover: {
-        bg: "lightgrey",
+        boxShadow: "0px 0px 9px 0px #000000B2"
       },
+      _disabled: {
+        bg: "lightPurple",
+        color: "darkPurple"
+      }
+    },
+    outlined: {
+      bg: "transparent",
+      color: "white",
+      textShadow: "0px 0px 9px 0px #000000B2",
+      px: 3,
+      py: 2,
+      _hover: {
+        bg: "purple",
+      },
+    },
+    selected: {
+      bg: "purple",
+      color: "white",
+      textShadow: "0px 0px 9px 0px #000000B2",
+      px: 3,
+      py: 2,
     }
   },
   defaultProps: {
     size: "md",
-    variant: "solid",
+    variant: "contained",
   },
 });
 

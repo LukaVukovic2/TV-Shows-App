@@ -9,18 +9,8 @@
   top: 60px;
 }
 
-.navLink, .logoutBtn{
-  text-align: center;
-  padding: 5px 15px;
-  border-radius: 12px;
-}
-
-.navLink:hover, .logoutBtn:hover{
-  font-weight: bold;
-}
-
 .active{
-  background-color: rgb(55, 22, 135);
+  background-color: pink;
 }
 
 @media (max-width: 530px) {

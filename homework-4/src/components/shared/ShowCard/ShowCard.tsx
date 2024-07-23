@@ -11,6 +11,7 @@ export default function ShowCard({ show }: { show: IShow }) {
       passHref
       overflow="hidden"
       variant="secondary"
+      w= "240px"
     >
       <CardHeader p={0}>
         <ImageWithFallback

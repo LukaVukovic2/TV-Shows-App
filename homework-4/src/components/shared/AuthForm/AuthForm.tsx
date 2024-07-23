@@ -148,6 +148,7 @@ export default function AuthForm({ isLogin, swrKey }: IAuthFormProps) {
             <Button
               type="submit"
               isLoading={isSubmitting}
+              isDisabled={isSubmitting}
             >
               {!isLogin ? "Sign up" : "Log in"}
             </Button>

@@ -1,5 +1,5 @@
 "use client";
-import { Flex, Text } from "@chakra-ui/react";
+import { Button, Flex, Text } from "@chakra-ui/react";
 import { usePathname } from "next/navigation";
 import NextLink from "next/link";
 import LogoImage from "@/components/core/LogoImage/LogoImage";
@@ -12,43 +12,46 @@ export default function SidebarNavigation() {
   const path = usePathname();
   const { mutate } = useUser();
 
-  function onLogout(){
+  function onLogout() {
     clearLocalStorage();
-    mutate(null, {"revalidate": false});
+    mutate(null, { revalidate: false });
   }
 
   return (
-      <Flex
-        className={styles.navbar}
-        justifyContent="space-between"
-      >
-        <nav className={styles.navItems}>
-          <LogoImage width={199} />
-          <Flex
-            flexWrap="wrap"
-            flexDirection="column"
-            alignItems="center"
-            gap={3}
-          >
-            {
-              navItems.map((item, index) => (
-                <NextLink
-                  href={item.path}
-                  key={index}
-                  className={`${styles.navLink} ${path === item.path && styles.active}`}
-                >
-                  {item.name}
-                </NextLink>
-              ))
-            }
-          </Flex>
-        </nav>
-
-        <Text as="button"
+    <Flex
+      className={styles.navbar}
+      justifyContent="space-between"
+    >
+      <nav className={styles.navItems}>
+        <LogoImage width={199} />
+        <Flex
+          flexWrap="wrap"
+          flexDirection="column"
+          alignItems="center"
+          gap={3}
+        >
+          {navItems.map((item, index) => (
+            <Button
+              as={NextLink}
+              variant={`${path === item.path ? "selected" : "outlined"}`}
+              href={item.path}
+              key={index}
+            >
+              {item.name}
+            </Button>
+          ))}
+        </Flex>
+      </nav>
+      <Flex justify="center">
+        <Button
+          display="inline-block"
+          variant="outlined"
           onClick={onLogout}
-          className={styles.logoutBtn}
-        >Logout
-        </Text>
+        >
+          Log out
+        </Button>
+
       </Flex>
+    </Flex>
   );
 }
