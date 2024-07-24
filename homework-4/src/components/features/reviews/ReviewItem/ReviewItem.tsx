@@ -24,7 +24,6 @@ export default function ReviewItem({
       >
         <Flex
           width="300px"
-          alignItems="center"
         >
           <Avatar
             mr={2}

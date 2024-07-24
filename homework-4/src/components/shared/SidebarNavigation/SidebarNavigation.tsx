@@ -1,59 +1,18 @@
 "use client";
-import { Button, Flex } from "@chakra-ui/react";
-import { usePathname } from "next/navigation";
-import NextLink from "next/link";
-import LogoImage from "@/components/core/LogoImage/LogoImage";
-import { navItems } from "../Data/NavigationItems";
-import styles from "./SidebarNavigation.module.css";
-import { useUser } from "@/hooks/useUser";
-import { clearLocalStorage } from "../utilities/LocalStorage/LocalStorage";
+import { Flex, chakra } from "@chakra-ui/react";
+import NavigationList from "../NavigationList/NavigationList";
 
 export default function SidebarNavigation() {
-  const path = usePathname();
-  const { mutate } = useUser();
-
-  function onLogout() {
-    clearLocalStorage();
-    mutate(null, { revalidate: false });
-  }
-
   return (
-    <Flex
-      className={styles.navbar}
-      justifyContent="space-between"
+    <chakra.nav
+      mt={8}    
+      height="100vh"
+      as={Flex}
+      direction="column"
+      justify="space-between"
+      alignItems="flex-start"
     >
-      <nav className={styles.navItems}>
-        <LogoImage width={199} />
-        <Flex
-          flexWrap="wrap"
-          flexDirection="column"
-          alignItems="center"
-          gap={3}
-        >
-          {navItems.map((item, index) => (
-            <Button
-              as={NextLink}
-              variant={`${path === item.path ? "selected" : "outlined"}`}
-              fontSize="2xl"
-              fontWeight="regular"
-              href={item.path}
-              key={index}
-            >
-              {item.name}
-            </Button>
-          ))}
-        </Flex>
-      </nav>
-      <Flex justify="center">
-        <Button
-          fontSize="xl"
-          display="inline-block"
-          variant="outlined"
-          onClick={onLogout}
-        >
-          Log out
-        </Button>
-      </Flex>
-    </Flex>
+      <NavigationList />
+    </chakra.nav>
   );
 }

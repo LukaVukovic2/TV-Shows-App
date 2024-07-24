@@ -1,0 +1,18 @@
+.header {
+  height: calc(100vh - 56px);
+  position: sticky;
+  flex-direction: column;
+  top: 32px;
+}
+
+@media (max-width: 991.9px) {
+  .header {
+    position: static;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+  }
+  .header {
+    height: auto;
+  }
+}

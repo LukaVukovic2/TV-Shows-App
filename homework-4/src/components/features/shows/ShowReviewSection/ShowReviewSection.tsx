@@ -11,7 +11,7 @@ export default function ReviewContainer({
   onDeleteReview,
 }: IReviewProps) {
   return (
-    <Flex py={10}>
+    <Flex py={10} direction={{ base: "column", lg: "row" }}>
       <Heading
         width={175}
         fontSize={["xl", "2xl"]}
