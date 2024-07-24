@@ -15,7 +15,7 @@ const cardStyle = {
   variants: {
     small: {
       container: {
-        bg: '#fff',
+        bg: 'white',
         color: 'purple'
       }
     },

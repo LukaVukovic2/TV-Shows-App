@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event';
-import React, { act } from "react";
+import React from "react";
 import { mutate } from 'swr';
 import { deleteReview, updateReview } from '@/fetchers/mutators';
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";

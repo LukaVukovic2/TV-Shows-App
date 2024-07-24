@@ -9,19 +9,8 @@ import Heading from "./components/heading";
 import fontSizes from "./foundations/font-sizes";
 import colors from "./foundations/colors";
 import breakpoints from "./foundations/breakpoints";
+import typography from "./foundations/typography";
 import styles from "./styles";
-
-const typography = {
-  fonts: {
-    heading: "Roboto, Arial, sans-serif",
-    body: "Roboto, Arial, sans-serif",
-  },
-  fontWeights: {
-    regular: 400,
-    bolder: 500,
-    bold: 700,
-  },
-};
 
 const theme = extendTheme({
   breakpoints,

@@ -126,8 +126,8 @@ export default function ReviewForm({
           isInvalid={!!errors.rating}
           isDisabled={isSubmitting}
         >
-          <Flex gap={2.5} alignItems="center">
-            <Text fontSize="xl">Rating</Text>
+          <Flex gap={{base: 1, md: 2.5}} alignItems="baseline">
+            <Text fontSize={["xs", "xl"]}>Rating</Text>
             <Input
               type="hidden"
               {...register("rating", {
@@ -162,6 +162,8 @@ export default function ReviewForm({
           <div>
             <Button
               fontSize="sm"
+              px={{ base: 7, md: 12 }}
+              py={{ base: 3, md: 5 }}
               form="create"
               className="reviewPostBtn"
               type="submit"

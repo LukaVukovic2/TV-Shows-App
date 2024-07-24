@@ -8,13 +8,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {  
   return (
-    <>
-      <Flex flexWrap="wrap" p={8}>
-        <Header />
-        <div style={{flex: 1}}>
-          {children}
-        </div>
-      </Flex>
-    </>
+    <Flex flexWrap="wrap" p={8}>
+      <Header />
+      <div style={{flex: 1}}>
+        {children}
+      </div>
+    </Flex>
   );
 }

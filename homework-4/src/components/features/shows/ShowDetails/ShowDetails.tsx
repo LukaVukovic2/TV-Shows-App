@@ -10,19 +10,18 @@ interface IShowDetailsProps {
 }
 
 export default function ShowDetails({ show, tempShow }: IShowDetailsProps) {
-  const variant = useBreakpointValue({ sm: "mobile", md: "tablet", lg: "web" });
+  const variant = useBreakpointValue({ sm: "sm", md: "md", lg: "lg" });
   const { title, description, image_url } = show;
   const { sumOfRatings, noOfReviews } = tempShow;
 
   return (
     <Card
       bg="white"
-      color="navy"
+      color="purple2"
       overflow="hidden"
     >
       <div className={styles.imgContainer}>
         <ImageWithFallback
-          className={styles.showImage}
           src={image_url}
           alt={title}
           width="100%"
@@ -31,14 +30,14 @@ export default function ShowDetails({ show, tempShow }: IShowDetailsProps) {
         />
       </div>
       <Flex
-        className={styles.showFlex}
+        direction={["column", "column", "row"]}
         justifyContent="space-between"
+        gap={5}
         p={10}
       >
         <chakra.div flex={1}>
           <Heading
             variant={variant}
-            fontWeight="bold"
           >
             {title}
           </Heading>

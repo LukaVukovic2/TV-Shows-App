@@ -13,17 +13,17 @@ export default function ReviewItem({
   return (
     <Card
       variant="medium"
-      px={10}
-      py={7}
+      px={{base: 6, md: 10}}
+      py={{base: 6, md: 7}}
       mb={7}
     >
       <Flex
-        justify="space-between"
+        justify={["column", "space-between"]}
         gap={4}
         wrap="wrap"
       >
         <Flex
-          width="300px"
+          width={["90%", "300px"]}
         >
           <Avatar
             mr={2}
@@ -33,7 +33,7 @@ export default function ReviewItem({
           />
           <Flex direction="column">
             <Text fontSize={["sm", "md"]} fontWeight="bold">{review.user?.email}</Text>
-            <Flex gap={2}>
+            <Flex gap={2} alignItems="baseline">
 
               <Text fontSize={["sm", "md"]}>{review.rating} / 5</Text>
               <p

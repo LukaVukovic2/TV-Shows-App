@@ -1,13 +1,24 @@
-import { Button, Drawer, DrawerOverlay, DrawerContent, DrawerHeader, DrawerBody, useDisclosure, Image, 
-  DrawerCloseButton, Flex } from "@chakra-ui/react";
-import NavigationList from "../NavigationList/NavigationList";
+import {
+  Button,
+  Drawer,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerHeader,
+  DrawerBody,
+  useDisclosure,
+  Image,
+  DrawerCloseButton,
+  chakra,
+  Flex,
+} from "@chakra-ui/react";
+import SidebarNavigation from "../SidebarNavigation/SidebarNavigation";
 
 export default function SidebarNavigationDrawer() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
       <Button
-        variant="outlined"
+        variant="borderless"
         onClick={onOpen}
       >
         <Image
@@ -28,9 +39,15 @@ export default function SidebarNavigationDrawer() {
             <DrawerCloseButton />
           </DrawerHeader>
           <DrawerBody>
-            <Flex direction="column" alignItems="flex-start" justify="space-between" height="calc(100vh - 56px)">
-              <NavigationList onClose={onClose} />
-            </Flex>
+            <chakra.nav
+              as={Flex}
+              direction="column"
+              alignItems="flex-start"
+              justify="space-between"
+              height="calc(100vh - 56px)"
+            >
+              <SidebarNavigation onClose={onClose} />
+            </chakra.nav>
           </DrawerBody>
         </DrawerContent>
       </Drawer>

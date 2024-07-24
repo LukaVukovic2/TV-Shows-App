@@ -3,7 +3,6 @@ import {
   CardHeader,
   CardBody,
   Heading,
-  Text,
   Flex,
 } from "@chakra-ui/react";
 import NextLink from "next/link";

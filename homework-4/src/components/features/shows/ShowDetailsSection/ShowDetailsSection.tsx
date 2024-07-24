@@ -26,7 +26,7 @@ export default function ShowDetailsPage() {
   }
 
   return (
-    <Flex justifyContent="flex-end">
+    <Flex justify={["center", "flex-end"]}>
       {show && <MainLayout tvShow={show} />}
     </Flex>
   );

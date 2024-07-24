@@ -4,14 +4,9 @@ const Button = defineStyleConfig({
   baseStyle: {
     borderRadius: "buttonRadius",
   },
-  sizes: {
-    md: {
-      h: "auto"
-    },
-  },
   variants: {
     contained: {
-      bg: "#fff",
+      bg: "white",
       color: "purple",
       textTransform: "uppercase",
       fontWeight: "bolder",
@@ -26,7 +21,7 @@ const Button = defineStyleConfig({
         color: "darkPurple"
       }
     },
-    outlined: {
+    borderless: {
       bg: "transparent",
       color: "white",
       textShadow: "0px 0px 9px 0px #000000B2",
@@ -45,7 +40,6 @@ const Button = defineStyleConfig({
     }
   },
   defaultProps: {
-    size: "md",
     variant: "contained",
   },
 });

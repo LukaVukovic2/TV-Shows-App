@@ -20,9 +20,7 @@ const Heading = defineStyleConfig({
     }
   },
   defaultProps: {
-    size: 'xl',
     variant: 'mobile',
-    colorScheme: 'brand',
   }
 })
 

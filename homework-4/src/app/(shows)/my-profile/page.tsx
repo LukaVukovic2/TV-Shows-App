@@ -70,9 +70,9 @@ export default function MyProfile() {
               <Card
                 as={Flex}
                 alignItems="center"
-                variant="huge"
+                variant="medium"
+                p={[5, 10, "85px 232px 74px 228px"]}
                 style={{
-                  padding: "85px 232px 74px 228px",
                   border: "2px dashed #371687",
                 }}
                 cursor="pointer"
@@ -90,7 +90,6 @@ export default function MyProfile() {
                   width={139}
                 />
                 <Text
-                  noOfLines={2}
                   fontSize="2xl"
                   fontWeight="bold"
                   color="lightPurple"

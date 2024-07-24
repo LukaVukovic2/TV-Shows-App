@@ -12,7 +12,7 @@ export default function Header() {
       justify="space-between"
       alignItems="flex-start"
       mb={[6, null]}
-      mr={[null, null, null, 6]}
+      mr={{base: 0, lg: 6}}
     >
       <LogoImage width={199} />
       {layoutSize == "sm" || layoutSize == "md" ? 

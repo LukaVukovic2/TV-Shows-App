@@ -8,7 +8,7 @@ export default function ShowsList({shows}: {shows: Array<IShow>}) {
     <Flex
       wrap="wrap"
       gap={8}
-      justifyContent="flex-end"
+      justifyContent={["center", "center", "center", "flex-end"]}
     >
       {shows.map((show) => (
         <ShowCard

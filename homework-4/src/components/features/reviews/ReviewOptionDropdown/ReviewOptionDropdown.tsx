@@ -1,5 +1,18 @@
-import { Button, ButtonGroup, Menu, MenuButton, MenuItem, MenuList, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, 
-  useDisclosure, useToast } from "@chakra-ui/react";
+import {
+  Button,
+  ButtonGroup,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
+  useDisclosure,
+  useToast,
+} from "@chakra-ui/react";
 import useSWRMutation from "swr/mutation";
 import { mutate } from "swr";
 import ReviewForm from "../../shows/ReviewForm/ReviewForm";
@@ -25,14 +38,14 @@ export default function ReviewOptionDropdown({
           title: "Review deleted",
           status: "info",
           duration: 3000,
-          isClosable: true
-        })
-      }
+          isClosable: true,
+        });
+      },
     }
   );
   const { trigger: updateTrigger } = useSWRMutation(
-    swrKeys.updateReview(review.id), 
-    updateReview, 
+    swrKeys.updateReview(review.id),
+    updateReview,
     {
       onSuccess: () => {
         mutate(swrKeys.getReviews(review.show_id));
@@ -40,8 +53,8 @@ export default function ReviewOptionDropdown({
           title: "Review updated",
           status: "success",
           duration: 3000,
-          isClosable: true
-        })
+          isClosable: true,
+        });
         onClose();
       },
     }
@@ -66,11 +79,11 @@ export default function ReviewOptionDropdown({
               variant="none"
               aria-label="Options"
             >
-              {isOpen ? 
+              {isOpen ? (
                 <i className="fa-solid fa-x"></i>
-                : 
+              ) : (
                 <i className="fa-solid fa-ellipsis-vertical"></i>
-              }
+              )}
             </MenuButton>
             <MenuList color="black">
               <MenuItem onClick={onOpen}>Edit</MenuItem>
@@ -87,8 +100,9 @@ export default function ReviewOptionDropdown({
       >
         <ModalOverlay />
         <ModalContent
-          bg="rgb(55,22,135)"
+          bg="purple2"
           py="5"
+          mx={["2", "auto"]}
         >
           <ModalHeader>Update review</ModalHeader>
           <ModalBody>
@@ -102,10 +116,18 @@ export default function ReviewOptionDropdown({
               <Button
                 type="submit"
                 form="update"
+                py={[2, 4]}
+                px={[4, 8]}
               >
                 Save
               </Button>
-              <Button onClick={onClose}>Cancel</Button>
+              <Button
+                onClick={onClose}
+                py={[2, 4]}
+                px={[4, 8]}
+              >
+                Cancel
+              </Button>
             </ButtonGroup>
           </ModalBody>
         </ModalContent>

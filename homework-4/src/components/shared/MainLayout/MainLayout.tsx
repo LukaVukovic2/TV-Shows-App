@@ -1,5 +1,5 @@
 "use client";
-import { Heading, useToast } from "@chakra-ui/react";
+import { useToast, chakra } from "@chakra-ui/react";
 import React from "react";
 import { useState, useEffect } from "react";
 import useSWR from "swr";
@@ -10,7 +10,6 @@ import { createReview } from "@/fetchers/mutators";
 import ShowReviewSection from "@/components/features/shows/ShowReviewSection/ShowReviewSection";
 import ShowDetails from "@/components/features/shows/ShowDetails/ShowDetails";
 import LoadingSpinner from "@/components/core/LoadingSpinner/LoadingSpinner";
-import styles from "./MainLayout.module.css";
 import { IApiResponseReview } from "@/typings/apiResponse";
 import { IReview, IReviewList } from "@/typings/review";
 import { IShow } from "@/typings/show";
@@ -73,7 +72,7 @@ export default function MainLayout({ tvShow }: { tvShow: IShow }) {
   }
 
   return (
-    <main className={styles.main}>
+    <chakra.main maxWidth={["900px"]}>
       <ShowDetails show={tvShow} tempShow={tempShow} />
       <ShowReviewSection
         reviews={reviewArr}
@@ -81,6 +80,6 @@ export default function MainLayout({ tvShow }: { tvShow: IShow }) {
         onAddReview={onAddReview}
         onDeleteReview={onDeleteReview}
       />
-    </main>
+    </chakra.main>
   );
 }
