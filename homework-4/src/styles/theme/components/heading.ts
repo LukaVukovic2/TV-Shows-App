@@ -3,6 +3,7 @@ import { defineStyleConfig } from '@chakra-ui/react'
 const Heading = defineStyleConfig({
   baseStyle: {
     fontWeight: 'bold',
+    color: 'purple2'
   },
   variants: {
     web: {

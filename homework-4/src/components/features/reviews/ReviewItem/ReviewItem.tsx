@@ -24,9 +24,12 @@ export default function ReviewItem({
       >
         <Flex
           width="300px"
+          alignItems="center"
         >
           <Avatar
             mr={2}
+            width={10}
+            height={10}
             src={review.user?.image_url !== null ? review.user?.image_url : ""}
           />
           <Flex direction="column">

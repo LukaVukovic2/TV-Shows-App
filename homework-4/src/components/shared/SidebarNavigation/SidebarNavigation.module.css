@@ -9,10 +9,6 @@
   top: 60px;
 }
 
-.active{
-  background-color: pink;
-}
-
 @media (max-width: 530px) {
   .navbar {
     position: static;
