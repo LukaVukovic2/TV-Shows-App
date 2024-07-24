@@ -1,4 +1,4 @@
-import { Box, Card, Heading, Text, Flex, chakra, useBreakpointValue } from "@chakra-ui/react";
+import { Card, Heading, Text, Flex, chakra, useBreakpointValue } from "@chakra-ui/react";
 import React from "react";
 import ImageWithFallback from "@/components/shared/utilities/ImageWithFallback/ImageWithFallback";
 import styles from "./ShowDetails.module.css";

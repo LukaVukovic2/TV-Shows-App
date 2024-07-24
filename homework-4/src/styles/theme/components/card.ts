@@ -27,8 +27,14 @@ const cardStyle = {
     },
     huge: {
       container: {
-        bg: 'purple',
-        color: '#fff',
+        bg: 'purple2',
+        color: 'white',
+        px: [ "40px", "53px"],
+        py: [ "0px ", "56px"],
+        w: ["100vw", "auto"],
+        borderRadius: [0, "cardRadius"],
+        height: ["100vh", "auto"],
+        m: [0, "10px", "auto"],
       }
     },
   }

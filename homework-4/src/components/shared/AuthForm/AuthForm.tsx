@@ -1,6 +1,6 @@
 "use client";
-import { Alert, AlertIcon, chakra, Flex, FormControl, Input, FormErrorMessage, Button, Text, InputLeftElement, InputGroup,
-} from "@chakra-ui/react";
+import { Alert, AlertIcon, chakra, Flex, FormControl, Input, FormErrorMessage, Button, Text, InputLeftElement, 
+  InputGroup } from "@chakra-ui/react";
 import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -153,7 +153,7 @@ export default function AuthForm({ isLogin, swrKey }: IAuthFormProps) {
             >
               {!isLogin ? "Sign up" : "Log in"}
             </Button>
-            <Text fontSize="sm">
+            <Text fontSize="sm" lineHeight="15px">
               {isLogin && (
                 <>
                   {`Don't have an account?`}

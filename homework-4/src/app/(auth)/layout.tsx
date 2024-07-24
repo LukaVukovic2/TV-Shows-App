@@ -13,10 +13,11 @@ export default function RootLayout({
     >
       <Card
         variant="huge"
-        w="500px"
-        p={14}
+        alignItems="center"
       >
-        {children}
+        <Flex alignItems="center" height="100%">
+          {children}
+        </Flex>
       </Card>
     </Flex>
   );

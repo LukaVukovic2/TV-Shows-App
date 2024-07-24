@@ -6,15 +6,17 @@ const { definePartsStyle, defineMultiStyleConfig } =
 
 const baseStyle = definePartsStyle({
   field: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 3,
+    height: "56px",
     py: 4,
     pl: 12,
     borderRadius: "inputRadius",
     _placeholder: {
       color: 'white',
-    }
-  },
-  element:{
-    ml: 3,
+    },
+    w: ["288px", "320px", "388px"],
   }
 })
 

@@ -14,8 +14,10 @@ const Button = defineStyleConfig({
       bg: "#fff",
       color: "purple",
       textTransform: "uppercase",
-      px: 47,
-      py: 19,
+      fontWeight: "bolder",
+      fontSize: "sm",
+      px: [47, 41.5],
+      py: [19],
       _hover: {
         boxShadow: "0px 0px 9px 0px #000000B2"
       },

@@ -30,12 +30,19 @@ export default function ShowCard({ show }: { show: IShow }) {
         />
       </CardHeader>
       <CardBody color="purple2">
-        <Flex direction={["row", "column"]} justify="space-between">
+        <Flex
+          direction={["row", "column"]}
+          justify="space-between"
+        >
           <Heading fontSize={["lg", "xl"]}>{show.title}</Heading>
-          <Flex alignItems="center" wrap="nowrap" fontSize="md">
-              <i className="fa-solid fa-star fa-md"></i>
-              {show.average_rating && show.average_rating.toFixed(1) + "/5"}
-              {!show.average_rating && " Not rated yet"}
+          <Flex
+            alignItems="center"
+            wrap="nowrap"
+            fontSize="md"
+          >
+            <i className="fa-solid fa-star fa-md"></i>
+            {show.average_rating && show.average_rating.toFixed(1) + "/5"}
+            {!show.average_rating && " Not rated yet"}
           </Flex>
         </Flex>
       </CardBody>

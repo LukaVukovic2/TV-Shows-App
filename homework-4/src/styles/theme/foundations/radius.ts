@@ -1,7 +1,7 @@
 const radii = {
-  buttonRadius: "16px",
+  buttonRadius: "999px",
   cardRadius: "16px",
-  inputRadius: "16px",
+  inputRadius: "28px",
 };
 
 export default radii;
