@@ -1,5 +1,5 @@
-import { Button, ButtonGroup, Menu, MenuButton, MenuItem, MenuList, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, 
-  useDisclosure, useToast } from "@chakra-ui/react";
+import { Button, ButtonGroup, Menu, MenuButton, MenuItem, MenuList, Modal, ModalBody, ModalContent, ModalHeader, 
+  ModalOverlay, useDisclosure, useToast } from "@chakra-ui/react";
 import useSWRMutation from "swr/mutation";
 import { mutate } from "swr";
 import ReviewForm from "../../shows/ReviewForm/ReviewForm";
@@ -9,7 +9,6 @@ import { updateReview } from "@/fetchers/mutators";
 import { IReview, IReviewItemProps } from "@/typings/review";
 
 export default function ReviewOptionDropdown({
-  onDeleteReview,
   review,
 }: IReviewItemProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -20,13 +19,14 @@ export default function ReviewOptionDropdown({
     deleteReview,
     {
       onSuccess: () => {
-        onDeleteReview(review.id);
         toast({
           title: "Review deleted",
           status: "info",
           duration: 3000,
           isClosable: true
         })
+        mutate(swrKeys.getReviews(review.show_id));
+        mutate(swrKeys.getShow(review.show_id));
       }
     }
   );
@@ -35,13 +35,14 @@ export default function ReviewOptionDropdown({
     updateReview, 
     {
       onSuccess: () => {
-        mutate(swrKeys.getReviews(review.show_id));
         toast({
           title: "Review updated",
           status: "success",
           duration: 3000,
           isClosable: true
         })
+        mutate(swrKeys.getReviews(review.show_id));
+        mutate(swrKeys.getShow(review.show_id));
         onClose();
       },
     }

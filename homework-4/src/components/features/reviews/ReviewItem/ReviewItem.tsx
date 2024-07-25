@@ -5,7 +5,7 @@ import styles from "./ReviewItem.module.css";
 import { IApiResponseUser } from "@/typings/apiResponse";
 import { IReviewItemProps } from "@/typings/review";
 
-export default function ReviewItem({review, onDeleteReview}: IReviewItemProps) {
+export default function ReviewItem({review}: IReviewItemProps) {
   const { data } = useUser() as { data: IApiResponseUser};
 
   return (
@@ -58,7 +58,7 @@ export default function ReviewItem({review, onDeleteReview}: IReviewItemProps) {
         </div>
       </Flex>
       {data?.user.id === review.user?.id && 
-        <ReviewOptionDropdown onDeleteReview={onDeleteReview} review={review}/>
+        <ReviewOptionDropdown review={review}/>
       }
     </Flex>
   );
