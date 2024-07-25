@@ -5,6 +5,7 @@ import { useUser } from "@/hooks/useUser";
 import { usePathname } from "next/navigation";
 import { navItems } from "../Data/NavigationItems";
 import { clearLocalStorage } from "../utilities/LocalStorage/LocalStorage";
+import Picker from "@/components/features/picker/Picker";
 
 interface ISidebarNavigationProps {
   onClose?: () => void;
@@ -45,6 +46,7 @@ export default function SidebarNavigation({onClose}: ISidebarNavigationProps) {
             {item.name}
           </Button>
         ))}
+        <Picker />
       </Flex>
       <Button
         fontSize="xl"
