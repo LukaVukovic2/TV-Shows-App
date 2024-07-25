@@ -1,10 +1,4 @@
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  Heading,
-  Flex,
-} from "@chakra-ui/react";
+import { Card, CardHeader, CardBody, Heading, Flex } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { IShow } from "@/typings/show";
 import ImageWithFallback from "../utilities/ImageWithFallback/ImageWithFallback";
@@ -16,7 +10,6 @@ export default function ShowCard({ show }: { show: IShow }) {
       href={`/shows/${show.id}`}
       passHref
       overflow="hidden"
-      variant="secondary"
       w={["auto", "240px"]}
     >
       <CardHeader p={0}>
@@ -28,19 +21,25 @@ export default function ShowCard({ show }: { show: IShow }) {
           defaultHeight="800"
         />
       </CardHeader>
-      <CardBody color="purple2">
+      <CardBody
+        color="purple2"
+        display={["unset", "flex"]}
+        alignItems={["unset", "flex-end"]}
+      >
         <Flex
           direction={["row", "column"]}
           justify="space-between"
+          alignItems={["center", "unset"]}
         >
           <Heading fontSize={["lg", "xl"]}>{show.title}</Heading>
           <Flex
             alignItems="center"
             wrap="nowrap"
             fontSize="md"
+            gap={1}
           >
             <i className="fa-solid fa-star fa-md"></i>
-            {show.average_rating && show.average_rating.toFixed(1) + "/5"}
+            {show.average_rating && show.average_rating + "/5"}
             {!show.average_rating && " Not rated yet"}
           </Flex>
         </Flex>

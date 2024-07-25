@@ -7,8 +7,7 @@ import { Flex, Heading, chakra } from "@chakra-ui/react";
 export default function ReviewContainer({
   reviews,
   show,
-  onAddReview,
-  onDeleteReview,
+  onAddReview
 }: IReviewProps) {
   return (
     <Flex pt={10} direction={{ base: "column", lg: "row" }}>
@@ -27,7 +26,6 @@ export default function ReviewContainer({
         />
         <ReviewList
           reviews={reviews}
-          onDeleteReview={onDeleteReview}
         />
       </chakra.div>
     </Flex>

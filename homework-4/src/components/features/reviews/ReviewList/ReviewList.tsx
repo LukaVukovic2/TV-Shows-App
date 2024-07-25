@@ -2,7 +2,7 @@ import { IReviewListProps } from "@/typings/review";
 import ReviewItem from "../ReviewItem/ReviewItem";
 import { Flex } from "@chakra-ui/react";
 
-export default function ReviewList({reviews, onDeleteReview}: IReviewListProps ) {
+export default function ReviewList({reviews}: IReviewListProps ) {
   return (
     <Flex flexDirection="column" pt={15}>
       {reviews.length === 0 ? 
@@ -13,7 +13,6 @@ export default function ReviewList({reviews, onDeleteReview}: IReviewListProps )
             <ReviewItem
               key={index}
               review={review}
-              onDeleteReview={onDeleteReview}
             />
           );
         })}

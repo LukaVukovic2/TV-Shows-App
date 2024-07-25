@@ -20,7 +20,6 @@ export interface IReviewProps{
   reviews: IReview[];
   show: IShow;
   onAddReview: (review: IReview) => void;
-  onDeleteReview: (reviewId: string) => void;
 }
 
 export interface IReviewFormProps{
@@ -32,10 +31,8 @@ export interface IReviewFormProps{
 
 export interface IReviewListProps{
   reviews: IReview[];
-  onDeleteReview: (reviewId: string) => void;
 }
 
 export interface IReviewItemProps{
   review: IReview;
-  onDeleteReview: (reviewId: string) => void;
 }

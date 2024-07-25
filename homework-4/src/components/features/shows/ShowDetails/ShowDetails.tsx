@@ -6,13 +6,11 @@ import { IShow } from "@/typings/show";
 
 interface IShowDetailsProps {
   show: IShow;
-  tempShow: { sumOfRatings: number; noOfReviews: number };
 }
 
-export default function ShowDetails({ show, tempShow }: IShowDetailsProps) {
+export default function ShowDetails({ show }: IShowDetailsProps) {
   const variant = useBreakpointValue({ sm: "sm", md: "md", lg: "lg" });
-  const { title, description, image_url } = show;
-  const { sumOfRatings, noOfReviews } = tempShow;
+  const { title, description, image_url, no_of_reviews, average_rating } = show;
 
   return (
     <Card
@@ -41,18 +39,18 @@ export default function ShowDetails({ show, tempShow }: IShowDetailsProps) {
           >
             {title}
           </Heading>
-          {!!noOfReviews && (
+          {!!average_rating && (
             <>
               <Text
                 className="averageRating"
                 fontSize={["xl", "2xl"]}
               >
-                <i className="fa-solid fa-star fa-md"></i>{" "}
-                {(sumOfRatings / noOfReviews).toFixed(1)}/5
+                <i className="fa-solid fa-star fa-md"></i>
+                {` ${average_rating}/5 (${no_of_reviews}) `}
               </Text>
             </>
           )}
-          {!noOfReviews && <span> No ratings</span>}
+          {!no_of_reviews && <span> No ratings</span>}
         </chakra.div>
         <chakra.div flex={1}>
           <Text fontSize={["sm", "md", "xl"]}>{description}</Text>
