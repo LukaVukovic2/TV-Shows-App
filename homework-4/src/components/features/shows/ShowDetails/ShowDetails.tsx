@@ -1,17 +1,15 @@
+import { Box, Card, Heading, Text, Flex } from "@chakra-ui/react";
 import React from "react";
+import ImageWithFallback from "@/components/shared/utilities/ImageWithFallback/ImageWithFallback";
 import styles from "./ShowDetails.module.css";
 import { IShow } from "@/typings/show";
-import { Box, Card, Heading, Text, Flex } from "@chakra-ui/react";
-import ImageWithFallback from "@/components/shared/utilities/ImageWithFallback/ImageWithFallback";
 
 interface IShowDetailsProps {
   show: IShow;
-  tempShow: { sumOfRatings: number; noOfReviews: number };
 }
 
-export default function ShowDetails({ show, tempShow }: IShowDetailsProps) {
-  const { title, description, image_url } = show;
-  const { sumOfRatings, noOfReviews } = tempShow;
+export default function ShowDetails({show} : IShowDetailsProps) {
+  const { title, description, image_url, no_of_reviews, average_rating } = show;
 
   return (
     <Card
@@ -37,13 +35,12 @@ export default function ShowDetails({ show, tempShow }: IShowDetailsProps) {
             className="fa-regular fa-star fa-lg"
             style={{ color: "#FFD43B" }}
           ></i>
-          {!!noOfReviews && (
+          {!!average_rating && (
             <span className="averageRating">
-              {" "}
-              {(sumOfRatings / noOfReviews).toFixed(1)}/5 {`(${noOfReviews})`}{" "}
+              {` ${average_rating}/5 (${no_of_reviews}) `}
             </span>
           )}
-          {!noOfReviews && <span> No ratings</span>}
+          {!no_of_reviews && <span> No ratings</span>}
           <Text>{description}</Text>
         </Box>
       </Flex>
