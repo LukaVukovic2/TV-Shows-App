@@ -3,6 +3,6 @@ import { useContext } from "react"
 import { PickerContext } from "../Picker";
 
 export const PickerProgress = () => {
-  const {currentStep} = useContext(PickerContext);
-  return <Progress value={currentStep} max={5} />
+  const { currentStep, totalSteps } = useContext(PickerContext);
+  return <Progress value={currentStep} min={1} max={totalSteps} colorScheme="green" width="100%"/>
 }

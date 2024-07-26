@@ -37,6 +37,12 @@ const cardStyle = {
         m: [0, "10px", "auto"],
       }
     },
+    picker: {
+      container: {
+        overflow: "hidden",
+        height: "100%"
+      }
+    }
   }
 }
 const Card = defineMultiStyleConfig(cardStyle)

@@ -11,7 +11,7 @@ export default function Header() {
       className={styles.header}
       justify="space-between"
       alignItems="flex-start"
-      mb={[6, null]}
+      mb={{base: 6, lg: 0}}
       mr={{base: 0, lg: 6}}
     >
       <LogoImage width={199} />
