@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useUser } from "@/hooks/useUser";
 import LogoImage from "@/components/core/LogoImage/LogoImage";
-import PasswordInput from "@/components/core/PasswordInput/PasswordInput";
+import {PasswordInput} from "@/components/core/PasswordInput/PasswordInput";
 import AuthRedirect from "../AuthRedirect/AuthRedirect";
 import { mutator } from "@/fetchers/mutators";
 import useSWRMutation from "swr/mutation";
@@ -33,7 +33,6 @@ export default function AuthForm({ isLogin, swrKey }: IAuthFormProps) {
   const { mutate } = useUser();
   const { trigger } = useSWRMutation(swrKey, mutator, {
     onSuccess: (resData) => {
-      setIsSuccess(true);
       toast({
         title: `You have successfully ${isLogin ? "logged in!" : "signed up!"}`,
         status: "success",
@@ -106,7 +105,7 @@ export default function AuthForm({ isLogin, swrKey }: IAuthFormProps) {
             isDisabled={isSubmitting}
           >
             <PasswordInput
-              register={register("password", { 
+              {...register("password", { 
                 required: "Password is required",
                 minLength: {
                   value: 8,
@@ -126,7 +125,7 @@ export default function AuthForm({ isLogin, swrKey }: IAuthFormProps) {
               isDisabled={isSubmitting}
             >
               <PasswordInput
-                register={register("password_confirmation", {
+                {...register("password_confirmation", {
                   required: "Password confirmation is required",
                   validate: value =>
                     value == password || "Passwords must match"
