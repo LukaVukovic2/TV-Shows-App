@@ -43,7 +43,6 @@ describe("ReviewItem", () => {
     render(
       <ReviewItem
         review={review}
-        onDeleteReview={() => {}}
       />
     );
     const email = screen.getByText(review.user.email);
@@ -55,7 +54,6 @@ describe("ReviewItem", () => {
     render(
       <ReviewItem
         review={review}
-        onDeleteReview={() => {}}
       />
     );
     const rating = screen.getByText(`${review.rating} / 5`);
@@ -67,7 +65,6 @@ describe("ReviewItem", () => {
     render(
       <ReviewItem
         review={review}
-        onDeleteReview={() => {}}
       />
     );
     const comment = screen.getByText(review.comment);
@@ -76,8 +73,7 @@ describe("ReviewItem", () => {
   });
 
   it('should call deleteReview on success', async () => {
-    const mockDelete = jest.fn();
-    render(<ReviewItem review={review} onDeleteReview={mockDelete} />);
+    render(<ReviewItem review={review} />);
     
     const dropdownBtn = screen.getByLabelText('Options');
     fireEvent.click(dropdownBtn);
@@ -91,7 +87,7 @@ describe("ReviewItem", () => {
   });
   
   it('should call updateReview and mutate on success', async () => {
-    render(<ReviewItem review={review} onDeleteReview={() => {}} />);
+    render(<ReviewItem review={review} />);
   
     const dropdownBtn = screen.getByLabelText('Options');
     fireEvent.click(dropdownBtn)
