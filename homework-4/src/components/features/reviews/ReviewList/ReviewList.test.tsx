@@ -36,7 +36,6 @@ jest.mock("../ReviewItem/ReviewItem", () => {
 });
 
 describe('ReviewList', () => {
-  const deleteReview = jest.fn();
   it("should call ReviewItem with appropriate props", () => {
     render(
       <ReviewList
@@ -44,7 +43,7 @@ describe('ReviewList', () => {
       />
     );
     reviews.forEach((review) => {
-      expect(ReviewItem).toHaveBeenCalledWith({ review, onDeleteReview: deleteReview }, expect.anything());
+      expect(ReviewItem).toHaveBeenCalledWith({ review }, expect.anything());
     });
   });
 });
