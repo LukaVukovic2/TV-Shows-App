@@ -1,15 +1,12 @@
+import { IUser } from "@/fetchers/user";
 import { IShow } from "./show";
 
 export interface IReview{
-  id: string;
   comment: string;
   rating: number;
   show_id: string;
-  user: {
-    id: string;
-    email: string;
-    image_url: string;
-  };
+  id?: string;
+  user?: IUser;
 }
 
 export interface IReviewList{

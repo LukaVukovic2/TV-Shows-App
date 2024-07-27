@@ -28,7 +28,7 @@ export default function ReviewOptionDropdown({
   const toast = useToast();
 
   const { trigger: deleteTrigger } = useSWRMutation(
-    swrKeys.deleteReview(review.id),
+    swrKeys.deleteReview(review.id as string),
     deleteReview,
     {
       onSuccess: () => {
@@ -44,7 +44,7 @@ export default function ReviewOptionDropdown({
     }
   );
   const { trigger: updateTrigger } = useSWRMutation(
-    swrKeys.updateReview(review.id),
+    swrKeys.updateReview(review.id as string),
     updateReview,
     {
       onSuccess: () => {

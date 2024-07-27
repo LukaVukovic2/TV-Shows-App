@@ -16,7 +16,7 @@ export const PickerResults = () => {
         direction={["column", "column", "row"]}
         gap={5}
         my={3}
-        alignItems={["center", "center", "end"]}
+        alignItems={[null, "center", "end"]}
       >
         {selectedShows.map((show, index) => {
           return (

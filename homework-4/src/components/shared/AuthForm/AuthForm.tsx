@@ -3,7 +3,6 @@ import { chakra, Flex, FormControl, Input, FormErrorMessage, Button, Text, Input
   InputGroup, 
   useToast} from "@chakra-ui/react";
 import Link from "next/link";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useUser } from "@/hooks/useUser";
 import LogoImage from "@/components/core/LogoImage/LogoImage";
@@ -28,7 +27,6 @@ export default function AuthForm({ isLogin, swrKey }: IAuthFormProps) {
   } = useForm<IFormData>();
 
   const toast = useToast();
-  const [isSuccess, setIsSuccess] = useState(false);
 
   const { mutate } = useUser();
   const { trigger } = useSWRMutation(swrKey, mutator, {

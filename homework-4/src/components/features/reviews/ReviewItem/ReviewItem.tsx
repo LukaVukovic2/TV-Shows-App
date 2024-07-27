@@ -68,7 +68,6 @@ export default function ReviewItem({
               review={review}
             />
           )}
-
         </chakra.div>
       </Flex>
     </Card>
