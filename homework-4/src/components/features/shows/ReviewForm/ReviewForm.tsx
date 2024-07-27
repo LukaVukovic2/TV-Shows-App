@@ -3,19 +3,13 @@ import React, { useState, useRef, useEffect } from "react";
 import styles from "./ReviewForm.module.css";
 import { IReview, IReviewFormProps } from "@/typings/review";
 import StarIcon from "../StarIcon/StarIcon";
-import { v4 as uuidv4 } from "uuid";
 import { Button, chakra, Flex, FormControl, FormErrorMessage, Textarea, Input, useToast } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
-import { IUser } from "@/fetchers/user";
 import { resetingRatingStars, styleRatingStars } from "@/components/shared/utilities/RatingStarsStyle/RatingStarsStyle";
-import { useUser } from "@/hooks/useUser";
 
 interface IFormData {
   comment: string;
   rating: number;
-}
-interface IApiResponse{
-  user: IUser;
 }
 
 export default function ReviewForm({ handleReview, show_id, review, mode }: IReviewFormProps) {
@@ -24,7 +18,6 @@ export default function ReviewForm({ handleReview, show_id, review, mode }: IRev
   }, []);
   
   const [rating, setRating] = useState(review?.rating);
-  const { data } = useUser() as { data: IApiResponse };
   const starsParent = useRef<HTMLDivElement>(null);
   const toast = useToast();
   const {
@@ -54,15 +47,9 @@ export default function ReviewForm({ handleReview, show_id, review, mode }: IRev
 
   const onSubmit = ({ comment, rating }: IFormData) => {
     const newReview: IReview = {
-      id: review?.id || uuidv4(),
       comment,
       rating,
-      show_id,
-      user: {
-        id: data.user.id,
-        email: data.user.email,
-        image_url: data.user.image_url
-      }
+      show_id
     };
     handleReview(newReview);
     setRating(0);
