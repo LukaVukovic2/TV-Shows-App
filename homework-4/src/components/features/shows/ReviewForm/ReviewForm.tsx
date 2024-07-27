@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./ReviewForm.module.css";
-import { IReview, IReviewFormProps } from "@/typings/review";
+import { IReviewFormProps } from "@/typings/review";
 import StarIcon from "../StarIcon/StarIcon";
 import { Button, chakra, Flex, FormControl, FormErrorMessage, Textarea, Input, useToast } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
@@ -46,7 +46,7 @@ export default function ReviewForm({ handleReview, show_id, review, mode }: IRev
   }
 
   const onSubmit = ({ comment, rating }: IFormData) => {
-    const newReview: IReview = {
+    const newReview = {
       comment,
       rating,
       show_id

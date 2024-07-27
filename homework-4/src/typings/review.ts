@@ -4,6 +4,12 @@ export interface IReview{
   comment: string;
   rating: number;
   show_id: string;
+  user?: {
+    id: string;
+    email: string;
+    image_url: string;
+  };
+  id?: string;
 }
 
 export interface IReviewList{
