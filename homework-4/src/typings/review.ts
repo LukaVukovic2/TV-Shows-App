@@ -1,15 +1,15 @@
 import { IShow } from "./show";
 
 export interface IReview{
-  id: string;
   comment: string;
   rating: number;
   show_id: string;
-  user: {
+  user?: {
     id: string;
     email: string;
     image_url: string;
   };
+  id?: string;
 }
 
 export interface IReviewList{

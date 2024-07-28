@@ -21,14 +21,12 @@ import { deleteReview } from "@/fetchers/mutators";
 import { updateReview } from "@/fetchers/mutators";
 import { IReview, IReviewItemProps } from "@/typings/review";
 
-export default function ReviewOptionDropdown({
-  review,
-}: IReviewItemProps) {
+export default function ReviewOptionDropdown({review}: IReviewItemProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
 
   const { trigger: deleteTrigger } = useSWRMutation(
-    swrKeys.deleteReview(review.id),
+    swrKeys.deleteReview(review.id as string),
     deleteReview,
     {
       onSuccess: () => {
@@ -44,8 +42,8 @@ export default function ReviewOptionDropdown({
     }
   );
   const { trigger: updateTrigger } = useSWRMutation(
-    swrKeys.updateReview(review.id),
-    updateReview,
+    swrKeys.updateReview(review.id as string), 
+    updateReview, 
     {
       onSuccess: () => {
         toast({

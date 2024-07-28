@@ -62,7 +62,7 @@ export default function MainLayout() {
   }
 
   return (
-    <chakra.main maxWidth={["900px"]}>
+    <chakra.main>
       <ShowDetails show={show} />
       <ShowReviewSection
         reviews={reviews}
