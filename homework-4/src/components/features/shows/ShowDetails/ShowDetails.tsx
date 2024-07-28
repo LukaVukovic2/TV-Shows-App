@@ -15,7 +15,7 @@ export default function ShowDetails({ show }: IShowDetailsProps) {
   return (
     <Card
       bg="white"
-      color="purple2"
+      color="purple.700"
       overflow="hidden"
     >
       <div className={styles.imgContainer}>

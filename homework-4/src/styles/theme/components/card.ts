@@ -16,18 +16,18 @@ const cardStyle = {
     small: {
       container: {
         bg: 'white',
-        color: 'purple'
+        color: 'purple.500'
       }
     },
     medium: {
       container: {
-        bg: 'purple2',
+        bg: 'purple.700',
         color: 'white',
       }
     },
     huge: {
       container: {
-        bg: 'purple2',
+        bg: 'purple.700',
         color: 'white',
         px: [ "40px", "53px"],
         py: [ "0px ", "56px"],

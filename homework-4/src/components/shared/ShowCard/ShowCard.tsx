@@ -22,7 +22,7 @@ export default function ShowCard({ show }: { show: IShow }) {
         />
       </CardHeader>
       <CardBody
-        color="purple2"
+        color="purple.700"
         display={["unset", "flex"]}
         alignItems={["unset", "flex-end"]}
       >

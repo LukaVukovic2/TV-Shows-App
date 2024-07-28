@@ -1,9 +1,7 @@
 "use client";
-import { chakra, Flex, FormControl, Input, FormErrorMessage, Button, Text, InputLeftElement, 
-  InputGroup, 
-  useToast} from "@chakra-ui/react";
+import { chakra, Flex, FormControl, Input, FormErrorMessage, Button, Text, InputLeftElement, InputGroup, useToast } 
+from "@chakra-ui/react";
 import Link from "next/link";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useUser } from "@/hooks/useUser";
 import LogoImage from "@/components/core/LogoImage/LogoImage";
@@ -28,12 +26,10 @@ export default function AuthForm({ isLogin, swrKey }: IAuthFormProps) {
   } = useForm<IFormData>();
 
   const toast = useToast();
-  const [isSuccess, setIsSuccess] = useState(false);
 
   const { mutate } = useUser();
   const { trigger } = useSWRMutation(swrKey, mutator, {
     onSuccess: (resData) => {
-      setIsSuccess(true);
       toast({
         title: `You have successfully ${isLogin ? "logged in!" : "signed up!"}`,
         status: "success",

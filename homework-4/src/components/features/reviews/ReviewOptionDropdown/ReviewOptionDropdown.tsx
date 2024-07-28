@@ -99,7 +99,7 @@ export default function ReviewOptionDropdown({review}: IReviewItemProps) {
       >
         <ModalOverlay />
         <ModalContent
-          bg="purple2"
+          bg="purple.700"
           py="5"
           mx={["2", "auto"]}
         >

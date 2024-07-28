@@ -32,7 +32,7 @@ export default function SidebarNavigationDrawer() {
       >
         <DrawerOverlay />
         <DrawerContent
-          bg="darkPurple"
+          bg="purple.900"
           borderRadius="30px 0 0 0"
         >
           <DrawerHeader>

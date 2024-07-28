@@ -1,11 +1,10 @@
 import LogoImage from "@/components/core/LogoImage/LogoImage";
 import SidebarNavigation from "../SidebarNavigation/SidebarNavigation";
-import { Flex, useBreakpointValue } from "@chakra-ui/react";
+import { Flex, Hide, Show } from "@chakra-ui/react";
 import SidebarNavigationDrawer from "../SidebarNavigationDrawer/SidebarNavigationDrawer";
 import styles from "./Header.module.css";
 
 export default function Header() {
-  const layoutSize = useBreakpointValue({ base: "sm", md: "md", lg: "lg" });
   return (
     <Flex
       className={styles.header}
@@ -13,12 +12,16 @@ export default function Header() {
       alignItems="flex-start"
       mb={[6, null]}
       mr={{base: 0, lg: 6}}
+      bg="purple.900"
+      py={{base: 4, lg: 0}}
     >
       <LogoImage width={199} />
-      {layoutSize == "sm" || layoutSize == "md" ? 
-        <SidebarNavigationDrawer /> : 
+      <Show above='lg'>
         <SidebarNavigation />
-      }
+      </Show>
+      <Hide above='lg'>
+        <SidebarNavigationDrawer />
+      </Hide>
     </Flex>
   );
 }
