@@ -2,7 +2,7 @@ const styles = {
   global: {
     "html, body": {
       color: "white",
-      bg: "darkPurple",
+      bg: "purple.900",
     },
     "#body": {
       m: 0,

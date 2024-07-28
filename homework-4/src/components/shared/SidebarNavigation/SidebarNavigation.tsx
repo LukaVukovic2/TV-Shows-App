@@ -28,7 +28,7 @@ export default function SidebarNavigation({onClose}: ISidebarNavigationProps) {
       justify="space-between"
       alignItems="flex-start"
     >
-      <Flex direction="column" gap={3}>
+      <Flex direction="column" gap={3} align="start">
         {navItems.map((item, index) => (
           <Button
             as={NextLink}

@@ -34,10 +34,10 @@ export const PickerResults = () => {
                 mt="auto"
                 textAlign="center"
                 fontSize="md"
-                color="darkPurple"
+                color="purple.900"
               >
                 {
-                `${show.title} ${show.average_rating}`
+                `${show.title} ${show.average_rating ? show.average_rating : "0"}`
                 }
                 <i className="fa-solid fa-star fa-md"></i>
               </Heading>

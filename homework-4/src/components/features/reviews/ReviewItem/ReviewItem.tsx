@@ -4,10 +4,8 @@ import ReviewOptionDropdown from "../ReviewOptionDropdown/ReviewOptionDropdown";
 import { IApiResponseUser } from "@/typings/apiResponse";
 import { IReviewItemProps } from "@/typings/review";
 
-export default function ReviewItem({
-  review
-}: IReviewItemProps) {
-  const { data } = useUser() as { data: IApiResponseUser };
+export default function ReviewItem({review}: IReviewItemProps) {
+  const { data } = useUser() as { data: IApiResponseUser};
 
   return (
     <Card

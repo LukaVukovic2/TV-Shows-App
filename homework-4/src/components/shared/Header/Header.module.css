@@ -7,10 +7,11 @@
 
 @media (max-width: 991.9px) {
   .header {
-    position: static;
+    z-index: 100;
     flex-direction: row;
     align-items: center;
     width: 100%;
     height: auto;
+    top: 0;
   }
 }

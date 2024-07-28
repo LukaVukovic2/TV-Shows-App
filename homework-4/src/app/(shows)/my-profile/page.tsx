@@ -92,7 +92,7 @@ export default function MyProfile() {
                 <Text
                   fontSize="2xl"
                   fontWeight="bold"
-                  color="lightPurple"
+                  color="purple.400"
                 >
                   Drop your photo here
                 </Text>

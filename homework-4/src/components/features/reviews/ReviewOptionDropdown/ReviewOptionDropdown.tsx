@@ -21,9 +21,7 @@ import { deleteReview } from "@/fetchers/mutators";
 import { updateReview } from "@/fetchers/mutators";
 import { IReview, IReviewItemProps } from "@/typings/review";
 
-export default function ReviewOptionDropdown({
-  review,
-}: IReviewItemProps) {
+export default function ReviewOptionDropdown({review}: IReviewItemProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
 
@@ -101,7 +99,7 @@ export default function ReviewOptionDropdown({
       >
         <ModalOverlay />
         <ModalContent
-          bg="purple2"
+          bg="purple.700"
           py="5"
           mx={["2", "auto"]}
         >

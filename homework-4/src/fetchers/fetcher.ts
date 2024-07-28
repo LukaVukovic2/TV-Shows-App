@@ -5,7 +5,7 @@ export async function fetcher<T>(input: string | URL | globalThis.Request, init?
       ...init?.headers,
       uid: user.uid,
       client: user.client,
-      'access-token': user.accessToken
+      'access-token': user.accessToken,
     };
     const response = await fetch(input, { ...init, headers });
 

@@ -94,7 +94,7 @@ export default function Picker() {
         <ModalOverlay />
         <ModalContent
           color="white"
-          bg="darkPurple"
+          bg="purple.900"
         >
           <ModalCloseButton />
           <ModalHeader>TV Show Picker</ModalHeader>

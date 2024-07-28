@@ -60,7 +60,7 @@ export const PickerTvShowStep = () => {
                 fontSize="md"
                 mt="auto"
                 padding={3}
-                color={isSelected ? "white" : "darkPurple"}
+                color={isSelected ? "white" : "purple.900"}
                 >
                 {show?.title}
               </Heading>

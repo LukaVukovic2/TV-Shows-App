@@ -12,8 +12,8 @@ export default function LoadingSpinner() {
         <Spinner
           thickness="4px"
           speed="0.65s"
-          emptyColor="purple"
-          color="lightPurple"
+          emptyColor="purple.500"
+          color="purple.400"
           size="xl"
         />
         Loading...

@@ -15,7 +15,7 @@ export default function ShowDetails({ show }: IShowDetailsProps) {
   return (
     <Card
       bg="white"
-      color="purple2"
+      color="purple.700"
       overflow="hidden"
     >
       <div className={styles.imgContainer}>
@@ -50,7 +50,7 @@ export default function ShowDetails({ show }: IShowDetailsProps) {
               </Text>
             </>
           )}
-          {!no_of_reviews && <span> No ratings</span>}
+          {!no_of_reviews && <Text fontSize={["sm", "xl"]}> No ratings</Text>}
         </chakra.div>
         <chakra.div flex={1}>
           <Text fontSize={["sm", "md", "xl"]}>{description}</Text>

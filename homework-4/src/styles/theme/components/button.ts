@@ -7,7 +7,7 @@ const Button = defineStyleConfig({
   variants: {
     contained: {
       bg: "white",
-      color: "purple",
+      color: "purple.500",
       textTransform: "uppercase",
       fontWeight: "bolder",
       fontSize: "sm",
@@ -17,8 +17,8 @@ const Button = defineStyleConfig({
         boxShadow: "0px 0px 9px 0px #000000B2"
       },
       _disabled: {
-        bg: "lightPurple",
-        color: "darkPurple"
+        bg: "purple.400",
+        color: "purple.900"
       }
     },
     borderless: {
@@ -28,11 +28,11 @@ const Button = defineStyleConfig({
       px: 3,
       py: 2,
       _hover: {
-        bg: "purple",
+        bg: "purple.500",
       },
     },
     selected: {
-      bg: "purple",
+      bg: "purple.500",
       color: "white",
       textShadow: "0px 0px 9px 0px #000000B2",
       px: 3,
