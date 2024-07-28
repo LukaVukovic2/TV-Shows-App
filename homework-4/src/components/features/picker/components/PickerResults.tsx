@@ -3,22 +3,22 @@ import { PickerContext } from "../Picker";
 import { Card, Flex, Heading, Image } from "@chakra-ui/react";
 
 export const PickerResults = () => {
-  const { selectedShows } = useContext(PickerContext);
+  const { winners } = useContext(PickerContext);
   return (
     <>
       <Heading
         variant="tablet"
         color="white"
       >
-        Your favorite TV Shows
+        Tonight you are watching:
       </Heading>
       <Flex
-        direction={["column", "column", "row"]}
+        direction={["row"]}
         gap={5}
         my={3}
-        alignItems={[null, "center", "end"]}
+        justify="center"
       >
-        {selectedShows.map((show, index) => {
+        {winners.map((show, index) => {
           return (
             <Card
               key={index}
@@ -26,7 +26,6 @@ export const PickerResults = () => {
               w={["auto", "240px"]}
             >
               <Image
-                hideBelow="md"
                 src={show.image_url}
                 alt={show.title}
               />
@@ -37,7 +36,10 @@ export const PickerResults = () => {
                 fontSize="md"
                 color="darkPurple"
               >
-                {show.title}
+                {
+                `${show.title} ${show.average_rating}`
+                }
+                <i className="fa-solid fa-star fa-md"></i>
               </Heading>
             </Card>
           );

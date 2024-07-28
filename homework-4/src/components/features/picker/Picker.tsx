@@ -1,6 +1,7 @@
 import {
   Button,
   Flex,
+  Heading,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -28,7 +29,12 @@ interface IPickerContext {
   selectedShows: Array<IShow>;
   setSelectedShows: (shows: Array<IShow>) => void;
   showsByStep: Array<IShow>;
+  round: number,
+  setRound: (number: number) => void
   totalSteps: number;
+  setTotalSteps: (number: number) => void,
+  winners: Array<IShow>,
+  setWinners: (shows: Array<IShow>) => void;
 }
 
 export const PickerContext = createContext<IPickerContext>({
@@ -37,16 +43,24 @@ export const PickerContext = createContext<IPickerContext>({
   selectedShows: [],
   setSelectedShows: () => {},
   showsByStep: [],
-  totalSteps: 5
+  round: 1,
+  setRound: () => {},
+  totalSteps: 4,
+  setTotalSteps: () => {},
+  winners: [],
+  setWinners: () => {},
 });
 
 export default function Picker() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [currentStep, setCurrentStep] = useState(1);
-  const [selectedShows, setSelectedShows] = useState<Array<IShow>>(Array.from({ length: 5 }));
+  const [round, setRound] = useState(1);
+  const [totalSteps, setTotalSteps] = useState(4);
+  const [winners, setWinners] = useState<Array<IShow>>([]);
+  const [selectedShows, setSelectedShows] = useState<Array<IShow>>(Array.from({ length: 4 }));
+  
   const { data: showsList } = useSWR<IShowList>(swrKeys.allShows, fetcher);
   const showsByStep = showsList?.shows || [];
-  const totalSteps = 5;
 
   return (
     <PickerContext.Provider
@@ -56,7 +70,12 @@ export default function Picker() {
         selectedShows,
         setSelectedShows,
         showsByStep,
-        totalSteps
+        totalSteps,
+        setTotalSteps,
+        round,
+        setRound,
+        winners,
+        setWinners
       }}
     >
       <Button
@@ -70,7 +89,7 @@ export default function Picker() {
       <Modal
         isOpen={isOpen}
         onClose={onClose}
-        size={["full", "lg", "2xl", "4xl"]}
+        size={["full", "lg"]}
       >
         <ModalOverlay />
         <ModalContent
@@ -80,13 +99,15 @@ export default function Picker() {
           <ModalCloseButton />
           <ModalHeader>TV Show Picker</ModalHeader>
           <ModalBody>
-            {
-              currentStep <= totalSteps && (
-                selectedShows[0]?.id ? 
-                  <PickerIcon /> : <Text lineHeight="48px" fontSize="xl">Choose 1 show out of 4</Text>
-              )
-            }
-            {currentStep <= totalSteps ? <PickerTvShowStep /> : <PickerResults />}
+            {round <= 3 ? (
+              <>
+                <Heading color="white" mb={2}>Round {round}</Heading>
+                {selectedShows[0]?.id ? <PickerIcon /> : <Text lineHeight="48px" fontSize="lg">Choose a better show!</Text>}
+                <PickerTvShowStep />
+              </>
+            ) : (
+              <PickerResults />
+            )}
           </ModalBody>
 
           <ModalFooter>

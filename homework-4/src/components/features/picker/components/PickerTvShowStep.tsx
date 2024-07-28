@@ -8,11 +8,15 @@ export const PickerTvShowStep = () => {
     currentStep,
     selectedShows,
     setSelectedShows,
-    showsByStep
+    showsByStep,
+    winners,
+    round
   } = useContext(PickerContext);
 
   if (!showsByStep) return <div>No shows available</div>;
-  const shows = showsByStep.slice((currentStep - 1) * 4, 4 * currentStep) || [];
+  
+  const source = round === 1 ? showsByStep : winners;
+  const shows = source.slice((currentStep - 1) * 2, 2 * currentStep) || [];
 
   function handleSelection(show: IShow, isSelected?: IShow) {
     if (isSelected) {
@@ -26,9 +30,12 @@ export const PickerTvShowStep = () => {
 
   return (
     <Flex
-      gap={4}
-      my={5}
+      gap="95px"
+      my={2}
+      py={[5, 5, 0]}
       direction={["column", "row"]}
+      justify="space-between"
+      background={"url('/images/versus.png') no-repeat center center"}
     >
       {shows.map((show) => {
         const isSelected = selectedShows?.find((selected) => selected === show);
