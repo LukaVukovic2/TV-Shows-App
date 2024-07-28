@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import PasswordInput from "./PasswordInput";
+import { PasswordInput } from "./PasswordInput";
 import { useForm } from "react-hook-form";
 
 const PasswordInputMock = () => {

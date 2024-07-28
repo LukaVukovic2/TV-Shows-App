@@ -42,8 +42,8 @@ export default function ReviewOptionDropdown({review}: IReviewItemProps) {
     }
   );
   const { trigger: updateTrigger } = useSWRMutation(
-    swrKeys.updateReview(review.id as string), 
-    updateReview, 
+    swrKeys.updateReview(review.id as string),
+    updateReview,
     {
       onSuccess: () => {
         toast({

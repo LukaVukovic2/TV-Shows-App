@@ -1,22 +1,34 @@
-interface StarIconProps {
+/* interface StarIconProps {
   label: string;
   value: number;
   onBlur: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+} */
+import styles from "./StarIcon.module.css";
+
+import { forwardRef, Input } from "@chakra-ui/react";
+
+interface StarIconProps {
+  value: number;
+  selected: boolean;
+  onChange: (newValue: number) => void;
 }
 
-export default function StarIcon(props: StarIconProps){
+export const StarIcon = forwardRef(({ selected, value, onChange }: StarIconProps, ref) => {
   return (
-    <label>
-      <input
-        type="radio"
-        name={props.label}
-        value={props.value}
-        onBlur={props.onBlur}
-        onChange={props.onChange}
-        tabIndex={2}
-      ></input>
-      <i className="fa-regular fa-star star"></i>
+    <label
+      htmlFor="rating"
+      className={styles.starLabel}
+    >
+      <Input
+        name="rating"
+        type="hidden"
+        ref={ref}
+      />
+      <i
+        className={`fa-regular fa-star ${selected && styles.starSelected}`}
+        onClick={() => onChange(value)}
+      ></i>
     </label>
-  )
-}
+  );
+});

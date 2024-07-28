@@ -66,7 +66,6 @@ export default function ReviewItem({review}: IReviewItemProps) {
               review={review}
             />
           )}
-
         </chakra.div>
       </Flex>
     </Card>

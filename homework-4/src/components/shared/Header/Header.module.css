@@ -1,5 +1,5 @@
 .header {
-  height: calc(100vh - 56px);
+  height: calc(100vh - 88px);
   position: sticky;
   flex-direction: column;
   top: 32px;

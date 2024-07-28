@@ -4,9 +4,9 @@ import { useRouter } from 'next/navigation';
 import LoadingSpinner from '@/components/core/LoadingSpinner/LoadingSpinner';
 
 export default function Home(){
-  const { push } = useRouter();
+  const { replace } = useRouter();
   useEffect(() => {
-    push('/all-shows');
+    replace('/all-shows');
   }, []);
 
   return <LoadingSpinner/>;

@@ -1,21 +1,15 @@
-import { Input, InputGroup, InputLeftElement, InputRightElement } from "@chakra-ui/react";
+import { forwardRef, Input, InputGroup, InputLeftElement, InputProps, InputRightElement } from "@chakra-ui/react";
 import { useState } from "react";
 import styles from "./PasswordInput.module.css";
-import { UseFormRegisterReturn } from "react-hook-form";
 
-interface PasswordInputProps {
-  register: UseFormRegisterReturn<any>;
-  placeholder: string;
-}
-
-export default function PasswordInput({register, placeholder}: PasswordInputProps) {
+export const PasswordInput = forwardRef(({...inputProps}: InputProps, ref) => {
   const [showPassword, setShowPassword] = useState(false);
   return (
     <InputGroup>
       <Input
-        {...register}
+        ref={ref}
+        {...inputProps}
         type={`${showPassword ? "text" : "password"}`}
-        placeholder={placeholder}
       />
       <InputLeftElement>
         <i className="fa-solid fa-lock icon"></i>
@@ -26,4 +20,4 @@ export default function PasswordInput({register, placeholder}: PasswordInputProp
       </InputRightElement>
     </InputGroup>
   )
-}
+});
