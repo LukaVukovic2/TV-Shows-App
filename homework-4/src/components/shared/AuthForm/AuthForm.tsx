@@ -1,5 +1,5 @@
 "use client";
-import { chakra, Flex, FormControl, Input, FormErrorMessage, Button, Text, InputLeftElement, InputGroup, useToast } 
+import { chakra, Flex, FormControl, Input, FormErrorMessage, Button, Text, InputLeftElement, InputGroup, useToast, FormLabel } 
 from "@chakra-ui/react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
@@ -75,6 +75,7 @@ export default function AuthForm({ isLogin, swrKey }: IAuthFormProps) {
           <FormControl
             isInvalid={!!errors.email}
             isDisabled={isSubmitting}
+            variant="floating"
           >
             <InputGroup>
               <Input
@@ -86,8 +87,9 @@ export default function AuthForm({ isLogin, swrKey }: IAuthFormProps) {
                   }
                 })}
                 type="email"
-                placeholder="Email"
+                placeholder=""
               />
+              <FormLabel>Email</FormLabel>
               <InputLeftElement>
                 <i className="fa-solid fa-user"></i>
               </InputLeftElement>
@@ -100,6 +102,7 @@ export default function AuthForm({ isLogin, swrKey }: IAuthFormProps) {
           <FormControl
             isInvalid={!!errors.password}
             isDisabled={isSubmitting}
+            variant="floating"
           >
             <PasswordInput
               {...register("password", { 
@@ -120,6 +123,7 @@ export default function AuthForm({ isLogin, swrKey }: IAuthFormProps) {
             <FormControl
               isInvalid={!!errors.password_confirmation}
               isDisabled={isSubmitting}
+              variant="floating"
             >
               <PasswordInput
                 {...register("password_confirmation", {

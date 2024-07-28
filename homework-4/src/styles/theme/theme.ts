@@ -11,6 +11,7 @@ import colors from "./foundations/colors";
 import breakpoints from "./foundations/breakpoints";
 import typography from "./foundations/typography";
 import styles from "./styles";
+import Form from "./components/form";
 
 const theme = extendTheme({
   breakpoints,
@@ -18,7 +19,8 @@ const theme = extendTheme({
     Button,
     Card,
     Input,
-    Heading
+    Heading,
+    Form
   },
   fonts: typography.fonts,
   fontWeights: typography.fontWeights,
