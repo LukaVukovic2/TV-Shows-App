@@ -11,7 +11,8 @@ export const setUserDataToLocalStorage = (response: any) => {
   
   if (client && accessToken && uid) {
     localStorage.setItem('user', JSON.stringify(user));
-}}
+  }
+}
 
 export const clearLocalStorage = () => {
   localStorage.removeItem("user");

@@ -31,7 +31,7 @@ describe("LoginForm", () => {
     const passwordInput = screen.getByPlaceholderText("Password");
     fireEvent.change(passwordInput, { target: { value: "password" } });
     
-    const loginBtn = screen.getByRole("button", { name: "Login" });
+    const loginBtn = screen.getByRole("button", { name: "Log in" });
     fireEvent.click(loginBtn);
 
     const arg = {

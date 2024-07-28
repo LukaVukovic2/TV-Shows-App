@@ -1,5 +1,18 @@
-import { Button, ButtonGroup, Menu, MenuButton, MenuItem, MenuList, Modal, ModalBody, ModalContent, ModalHeader, 
-  ModalOverlay, useDisclosure, useToast } from "@chakra-ui/react";
+import {
+  Button,
+  ButtonGroup,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
+  useDisclosure,
+  useToast,
+} from "@chakra-ui/react";
 import useSWRMutation from "swr/mutation";
 import { mutate } from "swr";
 import ReviewForm from "../../shows/ReviewForm/ReviewForm";
@@ -8,9 +21,7 @@ import { deleteReview } from "@/fetchers/mutators";
 import { updateReview } from "@/fetchers/mutators";
 import { IReview, IReviewItemProps } from "@/typings/review";
 
-export default function ReviewOptionDropdown({
-  review,
-}: IReviewItemProps) {
+export default function ReviewOptionDropdown({review}: IReviewItemProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
 
@@ -23,11 +34,11 @@ export default function ReviewOptionDropdown({
           title: "Review deleted",
           status: "info",
           duration: 3000,
-          isClosable: true
-        })
+          isClosable: true,
+        });
         mutate(swrKeys.getReviews(review.show_id));
         mutate(swrKeys.getShow(review.show_id));
-      }
+      },
     }
   );
   const { trigger: updateTrigger } = useSWRMutation(
@@ -39,8 +50,8 @@ export default function ReviewOptionDropdown({
           title: "Review updated",
           status: "success",
           duration: 3000,
-          isClosable: true
-        })
+          isClosable: true,
+        });
         mutate(swrKeys.getReviews(review.show_id));
         mutate(swrKeys.getShow(review.show_id));
         onClose();
@@ -67,11 +78,11 @@ export default function ReviewOptionDropdown({
               variant="none"
               aria-label="Options"
             >
-              {isOpen ? 
+              {isOpen ? (
                 <i className="fa-solid fa-x"></i>
-                : 
+              ) : (
                 <i className="fa-solid fa-ellipsis-vertical"></i>
-              }
+              )}
             </MenuButton>
             <MenuList color="black">
               <MenuItem onClick={onOpen}>Edit</MenuItem>
@@ -88,8 +99,9 @@ export default function ReviewOptionDropdown({
       >
         <ModalOverlay />
         <ModalContent
-          bg="rgb(55,22,135)"
+          bg="purple.700"
           py="5"
+          mx={["2", "auto"]}
         >
           <ModalHeader>Update review</ModalHeader>
           <ModalBody>
@@ -103,10 +115,18 @@ export default function ReviewOptionDropdown({
               <Button
                 type="submit"
                 form="update"
+                py={[2, 4]}
+                px={[4, 8]}
               >
                 Save
               </Button>
-              <Button onClick={onClose}>Cancel</Button>
+              <Button
+                onClick={onClose}
+                py={[2, 4]}
+                px={[4, 8]}
+              >
+                Cancel
+              </Button>
             </ButtonGroup>
           </ModalBody>
         </ModalContent>

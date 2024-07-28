@@ -1,7 +1,6 @@
-import { Flex, Avatar, Text } from "@chakra-ui/react";
+import { Flex, Avatar, Text, Card, chakra } from "@chakra-ui/react";
 import { useUser } from "@/hooks/useUser";
 import ReviewOptionDropdown from "../ReviewOptionDropdown/ReviewOptionDropdown";
-import styles from "./ReviewItem.module.css";
 import { IApiResponseUser } from "@/typings/apiResponse";
 import { IReviewItemProps } from "@/typings/review";
 
@@ -9,57 +8,67 @@ export default function ReviewItem({review}: IReviewItemProps) {
   const { data } = useUser() as { data: IApiResponseUser};
 
   return (
-    <Flex
-      className={styles.reviewElement}
-      flexWrap="wrap"
-      gap={2}
-      p={5}
+    <Card
+      variant="medium"
+      px={{base: 6, md: 10}}
+      py={{base: 6, md: 7}}
+      mb={7}
     >
       <Flex
-        flexDirection="column"
-        flexWrap="wrap"
-        gap={2}
+        justify={["column", "space-between"]}
+        gap={4}
+        wrap="wrap"
       >
         <Flex
-          alignItems="center"
-          flexWrap="wrap"
+          width={["90%", "300px"]}
         >
           <Avatar
             mr={2}
-            src={(review.user?.image_url !== null) ? review.user?.image_url : ""}
+            width={10}
+            height={10}
+            src={review.user?.image_url !== null ? review.user?.image_url : ""}
           />
-          <Text>{review.user?.email}</Text>
+          <Flex direction="column">
+            <Text fontSize={["sm", "md"]} fontWeight="bold">{review.user?.email}</Text>
+            <Flex gap={2} alignItems="baseline">
+
+              <Text fontSize={["sm", "md"]}>{review.rating} / 5</Text>
+              <p
+                data-rating-index={review.id}
+              >
+                {Array.from({ length: 5 }, (_, index) => {
+                  if (index >= review.rating) {
+                    return (
+                      <i
+                        key={index}
+                        className="fa-regular fa-star"
+                      ></i>
+                    );
+                  } else {
+                    return (
+                      <i
+                        key={index}
+                        className="fa-solid fa-star"
+                      ></i>
+                    );
+                  }
+                })}
+              </p>
+            </Flex>
+          </Flex>
         </Flex>
-        <Text>{review.comment}</Text>
-        <div>
-          <Text>{review.rating} / 5</Text>
-          <p
-            data-rating-index={review.id}
-            className={styles.reviewedRated}
-          >
-            {Array.from({ length: 5 }, (_, index) => {
-              if (index >= review.rating) {
-                return (
-                  <i
-                    key={index}
-                    className="fa-regular fa-star"
-                  ></i>
-                );
-              } else {
-                return (
-                  <i
-                    key={index}
-                    className={`${styles.reviewedRating} fa-regular fa-star`}
-                  ></i>
-                );
-              }
-            })}
-          </p>
-        </div>
+        <chakra.div flex={3}>
+          <Text fontSize={["sm", "md"]}>{review.comment}</Text>
+        </chakra.div>
+        <chakra.div>
+          {data?.user.id === review.user?.id && (
+            <ReviewOptionDropdown
+              review={review}
+            />
+          )}
+
+        </chakra.div>
       </Flex>
-      {data?.user.id === review.user?.id && 
-        <ReviewOptionDropdown review={review}/>
-      }
-    </Flex>
+    </Card>
   );
 }

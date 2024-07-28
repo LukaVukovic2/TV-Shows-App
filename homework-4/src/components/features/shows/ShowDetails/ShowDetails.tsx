@@ -1,4 +1,4 @@
-import { Box, Card, Heading, Text, Flex } from "@chakra-ui/react";
+import { Card, Heading, Text, Flex, chakra, useBreakpointValue } from "@chakra-ui/react";
 import React from "react";
 import ImageWithFallback from "@/components/shared/utilities/ImageWithFallback/ImageWithFallback";
 import styles from "./ShowDetails.module.css";
@@ -8,41 +8,53 @@ interface IShowDetailsProps {
   show: IShow;
 }
 
-export default function ShowDetails({show} : IShowDetailsProps) {
+export default function ShowDetails({ show }: IShowDetailsProps) {
+  const variant = useBreakpointValue({ sm: "sm", md: "md", lg: "lg" });
   const { title, description, image_url, no_of_reviews, average_rating } = show;
 
   return (
     <Card
       bg="white"
-      color="navy"
-      className={styles.showSection}
+      color="purple.700"
+      overflow="hidden"
     >
-      <Flex className={styles.showFlex}>
+      <div className={styles.imgContainer}>
         <ImageWithFallback
-          className={styles.showImage}
           src={image_url}
           alt={title}
-          width={200}
+          width="100%"
           defaultHeight="960"
           defaultWidth="540"
         />
-        <Box
-          className={styles.showInfo}
-          paddingLeft="4"
-        >
-          <Heading size="lg">{title}</Heading>
-          <i
-            className="fa-regular fa-star fa-lg"
-            style={{ color: "#FFD43B" }}
-          ></i>
+      </div>
+      <Flex
+        direction={["column", "column", "row"]}
+        justifyContent="space-between"
+        gap={5}
+        p={10}
+      >
+        <chakra.div flex={1}>
+          <Heading
+            variant={variant}
+          >
+            {title}
+          </Heading>
           {!!average_rating && (
-            <span className="averageRating">
-              {` ${average_rating}/5 (${no_of_reviews}) `}
-            </span>
+            <>
+              <Text
+                className="averageRating"
+                fontSize={["xl", "2xl"]}
+              >
+                <i className="fa-solid fa-star fa-md"></i>
+                {` ${average_rating}/5 (${no_of_reviews}) `}
+              </Text>
+            </>
           )}
           {!no_of_reviews && <span> No ratings</span>}
-          <Text>{description}</Text>
-        </Box>
+        </chakra.div>
+        <chakra.div flex={1}>
+          <Text fontSize={["sm", "md", "xl"]}>{description}</Text>
+        </chakra.div>
       </Flex>
     </Card>
   );

@@ -1,56 +1,60 @@
 "use client";
-import { Flex, Text } from "@chakra-ui/react";
-import { usePathname } from "next/navigation";
+import { Button, Flex, chakra } from "@chakra-ui/react";
 import NextLink from "next/link";
-import LogoImage from "@/components/core/LogoImage/LogoImage";
-import { navItems } from "../Data/NavigationItems";
-import styles from "./SidebarNavigation.module.css";
 import { useUser } from "@/hooks/useUser";
+import { usePathname } from "next/navigation";
+import { navItems } from "../Data/NavigationItems";
 import { clearLocalStorage } from "../utilities/LocalStorage/LocalStorage";
 
-export default function SidebarNavigation() {
-  const path = usePathname();
+interface ISidebarNavigationProps {
+  onClose?: () => void;
+}
+
+export default function SidebarNavigation({onClose}: ISidebarNavigationProps) {
   const { mutate } = useUser();
+  const path = usePathname();
 
-  function onLogout(){
+  function onLogout() {
     clearLocalStorage();
-    mutate(null, {"revalidate": false});
+    mutate(null, { revalidate: false });
   }
-
   return (
-    <div className={styles.navWrapper}>
-      <Flex
-        className={styles.navbar}
-        justifyContent="space-between"
-      >
-        <nav className={styles.navItems}>
-          <LogoImage width={100} />
-          <Flex
-            flexWrap="wrap"
-            flexDirection="column"
-            alignItems="center"
-            gap={3}
+    <chakra.nav
+      mt={8}    
+      height="100vh"
+      as={Flex}
+      direction="column"
+      justify="space-between"
+      alignItems="flex-start"
+    >
+      <Flex direction="column" gap={3}>
+        {navItems.map((item, index) => (
+          <Button
+            as={NextLink}
+            variant={`${path === item.path ? "selected" : "borderless"}`}
+            fontSize="2xl"
+            fontWeight="regular"
+            href={item.path}
+            key={index}
+            onClick={() => {
+              if (onClose) {
+                onClose();
+              }
+            }}
           >
-            {
-              navItems.map((item, index) => (
-                <NextLink
-                  href={item.path}
-                  key={index}
-                  className={`${styles.navLink} ${path === item.path && styles.active}`}
-                >
-                  {item.name}
-                </NextLink>
-              ))
-            }
-          </Flex>
-        </nav>
-
-        <Text as="button"
-          onClick={onLogout}
-          className={styles.logoutBtn}
-        >Logout
-        </Text>
+            {item.name}
+          </Button>
+        ))}
       </Flex>
-    </div>
+      <Button
+        fontSize="xl"
+        display="inline-block"
+        variant="borderless"
+        fontWeight="regular"
+        onClick={onLogout}
+      >
+        Log out
+      </Button>
+    </chakra.nav>
   );
 }

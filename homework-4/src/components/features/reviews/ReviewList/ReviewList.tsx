@@ -4,7 +4,7 @@ import { Flex } from "@chakra-ui/react";
 
 export default function ReviewList({reviews}: IReviewListProps ) {
   return (
-    <Flex flexDirection="column">
+    <Flex flexDirection="column" pt={15}>
       {reviews.length === 0 ? 
         <p style={{margin: "10px 0"}}>No reviews yet</p> 
           :

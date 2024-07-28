@@ -1,5 +1,5 @@
 "use client";
-import { Heading, useToast } from "@chakra-ui/react";
+import { useToast, chakra } from "@chakra-ui/react";
 import React from "react";
 import useSWR, { mutate } from "swr";
 import useSWRMutation from "swr/mutation";
@@ -9,7 +9,6 @@ import { createReview } from "@/fetchers/mutators";
 import ShowReviewSection from "@/components/features/shows/ShowReviewSection/ShowReviewSection";
 import ShowDetails from "@/components/features/shows/ShowDetails/ShowDetails";
 import LoadingSpinner from "@/components/core/LoadingSpinner/LoadingSpinner";
-import styles from "./MainLayout.module.css";
 import { IReview, IReviewList } from "@/typings/review";
 import { IShow } from "@/typings/show";
 import { useParams } from "next/navigation";
@@ -21,21 +20,21 @@ interface IApiShowResponse {
 export default function MainLayout() {
   const { id } = useParams<{ id: string }>();
   const toast = useToast();
+  
   const {
     data: showData,
     error: errorShow,
     isLoading: isLoadingShow
   } = useSWR<IApiShowResponse>(swrKeys.getShow(id), fetcher);
-
   const show = showData?.show as IShow;
+
   const {
     data: reviewData,
     error: errorReview,
     isLoading: isLoadingReview,
   } = useSWR<IReviewList>(swrKeys.getReviews(id), fetcher);
-
   const reviews: IReview[] = reviewData?.reviews || [];
-
+  
   const { trigger: addTrigger } = useSWRMutation(
     swrKeys.createReview,
     createReview,
@@ -57,27 +56,19 @@ export default function MainLayout() {
   if (errorShow) return <div>No show available</div>;
   if (isLoadingReview) return <LoadingSpinner />;
   if (isLoadingShow) return <LoadingSpinner />;
-  
 
   async function onAddReview(review: IReview) {
     await addTrigger(review);
   }
 
   return (
-    <main className={styles.main}>
+    <chakra.main>
       <ShowDetails show={show} />
-      <Heading
-        as="h2"
-        size="lg"
-        my={3}
-      >
-        Reviews
-      </Heading>
       <ShowReviewSection
         reviews={reviews}
         show={show}
         onAddReview={onAddReview}
       />
-    </main>
+    </chakra.main>
   );
 }
