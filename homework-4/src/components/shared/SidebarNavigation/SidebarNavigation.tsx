@@ -1,11 +1,11 @@
 "use client";
 import { Flex, Text } from "@chakra-ui/react";
-import { useUser } from "@/hooks/useUser";
+import { usePathname } from "next/navigation";
 import NextLink from "next/link";
-import styles from "./SidebarNavigation.module.css";
 import LogoImage from "@/components/core/LogoImage/LogoImage";
 import { navItems } from "../Data/NavigationItems";
-import { usePathname } from "next/navigation";
+import styles from "./SidebarNavigation.module.css";
+import { useUser } from "@/hooks/useUser";
 import { clearLocalStorage } from "../utilities/LocalStorage/LocalStorage";
 
 export default function SidebarNavigation() {

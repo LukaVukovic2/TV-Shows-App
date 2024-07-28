@@ -1,73 +1,71 @@
 "use client";
-import React, { useEffect } from "react";
-import { useState } from "react";
+import { Heading, useToast } from "@chakra-ui/react";
+import React from "react";
+import useSWR, { mutate } from "swr";
+import useSWRMutation from "swr/mutation";
+import { swrKeys } from "@/fetchers/swrKeys";
+import { fetcher } from "@/fetchers/fetcher";
+import { createReview } from "@/fetchers/mutators";
 import ShowReviewSection from "@/components/features/shows/ShowReviewSection/ShowReviewSection";
 import ShowDetails from "@/components/features/shows/ShowDetails/ShowDetails";
-import { IReview } from "@/typings/review";
-import { IShow } from "@/typings/show";
-import {
-  getItemFromLocalStorage,
-  removeLocalStorageItem,
-  saveToLocalStorage,
-} from "@/components/shared/utilities/LocalStorage/LocalStorage";
+import LoadingSpinner from "@/components/core/LoadingSpinner/LoadingSpinner";
 import styles from "./MainLayout.module.css";
-import { Heading } from "@chakra-ui/react";
+import { IReview, IReviewList } from "@/typings/review";
+import { IShow } from "@/typings/show";
+import { useParams } from "next/navigation";
 
-export default function MainLayout({tvShow}: {tvShow: IShow}) {
-  const [reviewArr, setReviewArr] = useState<IReview[]>([]);
-  const [tempShow, setTempShow] = useState({
-    sumOfRatings:  Math.round(tvShow.no_of_reviews * tvShow.average_rating),
-    noOfReviews: tvShow.no_of_reviews
-  });
-  const apiRatingSum = Math.round(tvShow.average_rating * tvShow.no_of_reviews);
+interface IApiShowResponse {
+  show: IShow;
+}
 
-  useEffect(() => {
-    const arr = getItemFromLocalStorage();
-    setReviewArr(arr);
-    calculateAverageRating(arr);
-  }, []);
+export default function MainLayout() {
+  const { id } = useParams<{ id: string }>();
+  const toast = useToast();
+  const {
+    data: showData,
+    error: errorShow,
+    isLoading: isLoadingShow
+  } = useSWR<IApiShowResponse>(swrKeys.getShow(id), fetcher);
 
-  function calculateAverageRating(reviews: IReview[]) {
-    let sum = 0, average = 0;
+  const show = showData?.show as IShow;
+  const {
+    data: reviewData,
+    error: errorReview,
+    isLoading: isLoadingReview,
+  } = useSWR<IReviewList>(swrKeys.getReviews(id), fetcher);
 
-    if (reviews.length && apiRatingSum) {
-      sum = reviews.reduce((acc, review) => acc + review.rating, apiRatingSum);
-      average = sum / (apiRatingSum + reviews.length);
-    } else if (!reviews.length && apiRatingSum) {
-      sum = apiRatingSum;
-      average = sum / apiRatingSum;
-    } else if (reviews.length && !apiRatingSum) {
-      sum = reviews.reduce((acc, review) => acc + review.rating, 0);
-      average = reviews.length ? sum / reviews.length : 0;
+  const reviews: IReview[] = reviewData?.reviews || [];
+
+  const { trigger: addTrigger } = useSWRMutation(
+    swrKeys.createReview,
+    createReview,
+    {
+      onSuccess: () => {
+        toast({
+          title: "Review added",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        });
+        mutate(swrKeys.getShow(id));
+        mutate(swrKeys.getReviews(id));;
+      },
     }
+  );
 
-    setTempShow({
-      sumOfRatings: sum,
-      noOfReviews: reviews.length + tvShow.no_of_reviews
-    });
-  }
+  if (errorReview) return <div>No reviews available</div>;
+  if (errorShow) return <div>No show available</div>;
+  if (isLoadingReview) return <LoadingSpinner />;
+  if (isLoadingShow) return <LoadingSpinner />;
+  
 
-  function onAddReview(review: IReview) {
-    const newArray = [review, ...reviewArr];
-    setReviewArr(newArray);
-    saveToLocalStorage("reviewarray", newArray);
-    calculateAverageRating(newArray);
-  }
-
-  function onDeleteReview(reviewId: string) {
-    const filteredArray = reviewArr.filter((review) => review.id !== reviewId);
-    setReviewArr(filteredArray);
-    calculateAverageRating(filteredArray);
-    if (!filteredArray.length) {
-      removeLocalStorageItem();
-    } else {
-      saveToLocalStorage("reviewarray", filteredArray);
-    }
+  async function onAddReview(review: IReview) {
+    await addTrigger(review);
   }
 
   return (
     <main className={styles.main}>
-      <ShowDetails show={tvShow} tempShow={tempShow} />
+      <ShowDetails show={show} />
       <Heading
         as="h2"
         size="lg"
@@ -76,9 +74,9 @@ export default function MainLayout({tvShow}: {tvShow: IShow}) {
         Reviews
       </Heading>
       <ShowReviewSection
-        reviews={reviewArr}
+        reviews={reviews}
+        show={show}
         onAddReview={onAddReview}
-        onDeleteReview={onDeleteReview}
       />
     </main>
   );
