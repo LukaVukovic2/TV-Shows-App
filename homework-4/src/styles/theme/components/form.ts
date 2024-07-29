@@ -22,9 +22,10 @@ const Form = {
           backgroundColor: "purple.700",
           pointerEvents: "none",
           mx: 10,
-          px: 1,
+          px: 2,
           my: 4,
-          transformOrigin: "left top"
+          transformOrigin: "left top",
+          borderRadius: "26px",
         }
       }
     }
