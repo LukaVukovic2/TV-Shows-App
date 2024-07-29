@@ -10,9 +10,9 @@ export default function RootLayout({
   return (
     <Flex flexWrap="wrap" p={8}>
       <Header />
-      <div style={{flex: 1}}>
+      <Flex flex={1} justifyContent="center" wrap="wrap" alignItems="center">
         {children}
-      </div>
+      </Flex>
     </Flex>
   );
 }

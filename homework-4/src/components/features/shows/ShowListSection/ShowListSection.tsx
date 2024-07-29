@@ -5,13 +5,18 @@ import ShowsList from "@/components/shared/ShowsList/ShowsList";
 import { fetcher } from "@/fetchers/fetcher";
 import { swrKeys } from "@/fetchers/swrKeys";
 import { IShowList } from "@/typings/show";
+import { useSearchParams } from 'next/navigation'
 
 export default function ShowListSection() {
-  const { data, error, isLoading } = useSWR<IShowList>(swrKeys.allShows, fetcher);
+  const searchParams = useSearchParams()
+  const currentPage = searchParams.get('page') || '1';
+
+  const { data, error, isLoading } = useSWR<IShowList>(swrKeys.getShowsByPage(currentPage), fetcher);
   const shows = data?.shows || [];
+  const pagination = data?.meta?.pagination;
   
   if (error) return <div>No shows available</div>;
   if (isLoading) return <LoadingSpinner/>
   
-  return <ShowsList shows={shows} />
+  return <ShowsList shows={shows} pagination={pagination}/>
 }

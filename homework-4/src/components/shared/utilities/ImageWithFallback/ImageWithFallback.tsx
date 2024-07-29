@@ -1,19 +1,14 @@
 import React, {useState} from "react";
-import { Image } from "@chakra-ui/react";
+import { Image, InputProps } from "@chakra-ui/react";
 
-interface ImageWithFallbackProps {
-  src: string | undefined;
-  alt: string;
-  width: number | string;
+interface ImageWithFallbackProps extends InputProps {
   defaultHeight: string;
   defaultWidth: string;
-  className?: string;
 }
 
 export default function ImageWithFallback({
   src,
   alt,
-  width,
   className,
   defaultHeight,
   defaultWidth
@@ -30,8 +25,8 @@ export default function ImageWithFallback({
       className={className}
       src={imgSrc}
       alt={alt}
-      width={width}
       onError={handleImageError}
+      objectFit="cover"
     />
   );
 }
