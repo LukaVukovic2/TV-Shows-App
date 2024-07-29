@@ -11,7 +11,7 @@ export default function Header() {
       justify="space-between"
       alignItems="flex-start"
       mb={{base: 6, lg: 0}}
-      mr={{base: 0, lg: 6}}
+      mr={{base: 0, lg: 12}}
       bg="purple.900"
       py={{base: 4, lg: 0}}
     >

@@ -9,6 +9,14 @@ export interface IShow {
 
 export interface IShowList{
   shows: IShow[];
+  meta?: {
+    pagination: {
+      count: number;
+      items: number;
+      page: number;
+      pages: number;
+    };
+  };
 }
 
 export interface IShowCard  {
