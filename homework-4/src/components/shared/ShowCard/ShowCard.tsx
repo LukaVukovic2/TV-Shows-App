@@ -10,7 +10,10 @@ export default function ShowCard({ show }: { show: IShow }) {
       href={`/shows/${show.id}`}
       passHref
       overflow="hidden"
-      w={["auto", "240px"]}
+      w={["auto", "47%", "30%", "30%", "22%"]}
+      maxWidth="300px"
+      mx="1.5%"
+      mb={["32px", "4%"]}
     >
       <CardHeader p={0}>
         <ImageWithFallback
@@ -19,6 +22,7 @@ export default function ShowCard({ show }: { show: IShow }) {
           width={1200}
           defaultWidth="1200"
           defaultHeight="800"
+          objectFit="cover"
         />
       </CardHeader>
       <CardBody

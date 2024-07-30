@@ -59,7 +59,7 @@ export default function Picker() {
   const [winners, setWinners] = useState<Array<IShow>>([]);
   const [selectedShows, setSelectedShows] = useState<Array<IShow>>(Array.from({ length: 4 }));
   
-  const { data: showsList } = useSWR<IShowList>(swrKeys.allShows, fetcher);
+  const { data: showsList } = useSWR<IShowList>(swrKeys.getShowsByPage("1", "8"), fetcher);
   const showsByStep = showsList?.shows || [];
 
   return (

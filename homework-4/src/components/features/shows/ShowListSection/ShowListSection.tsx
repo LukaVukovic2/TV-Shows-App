@@ -10,13 +10,16 @@ import { useSearchParams } from 'next/navigation'
 export default function ShowListSection() {
   const searchParams = useSearchParams()
   const currentPage = searchParams.get('page') || '1';
+  const items = "12";
 
-  const { data, error, isLoading } = useSWR<IShowList>(swrKeys.getShowsByPage(currentPage), fetcher);
+  const { data, error, isLoading } = useSWR<IShowList>(swrKeys.getShowsByPage(currentPage, items), fetcher, {
+    revalidateOnFocus: false
+  });
   const shows = data?.shows || [];
   const pagination = data?.meta?.pagination;
   
   if (error) return <div>No shows available</div>;
-  if (isLoading) return <LoadingSpinner/>
+  if (isLoading) return <LoadingSpinner/>;
   
   return <ShowsList shows={shows} pagination={pagination}/>
 }
