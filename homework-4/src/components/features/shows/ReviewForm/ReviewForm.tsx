@@ -76,6 +76,7 @@ export default function ReviewForm({
           defaultValue={review?.comment}
           tabIndex={1}
           my={3}
+          borderRadius="25px"
         ></Textarea>
         <FormErrorMessage>
           {errors.comment && errors.comment.message}

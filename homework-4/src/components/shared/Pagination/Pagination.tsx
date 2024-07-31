@@ -1,6 +1,6 @@
-import { Flex, Hide, Image, chakra } from "@chakra-ui/react";
+import { Flex, Image, chakra } from "@chakra-ui/react";
 import NextLink from "next/link";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
 interface IPaginationProps {
   pagination: {
@@ -12,6 +12,7 @@ interface IPaginationProps {
 }
 
 export default function Pagination({ pagination }: IPaginationProps) {
+  const path = usePathname();
   const searchParams = useSearchParams();
   const currentPage = Number(searchParams.get("page") || "1");
   const pages = pagination?.pages;
@@ -20,36 +21,39 @@ export default function Pagination({ pagination }: IPaginationProps) {
       justifyContent="center"
       alignItems="center"
       mt={5}
+      width="100%"
+      textAlign="center"
     >
-        {
-          currentPage > 1 && (
-              <chakra.div
-                borderRadius={4}
-                p={3}
-              >
-                <NextLink href={`/all-shows?page=${currentPage - 1}`}>
-                  <Image src="images/chevron_left.svg" alt="previous"/>
-                </NextLink>
-              </chakra.div>
-          )
-        }
+      {
+        currentPage > 1 && (
+          <chakra.div
+            borderRadius={4}
+            p={3}
+          >
+            <NextLink href={`${path}?page=${currentPage - 1}`}>
+              <Image src="/images/chevron_left.svg" alt="previous"/>
+            </NextLink>
+          </chakra.div>
+        )
+      }
+      {
+        pagination.count > 0 &&
         <chakra.div>
           {currentPage} of {pages}
         </chakra.div>
-        {
-          currentPage < pages && (
-            <Hide below="sm">
-              <chakra.div
-                as={NextLink}
-                p={3}
-                href={`/all-shows?page=${currentPage + 1}`}
-              >
-                
-                <Image src="images/chevron_right.svg" alt="next"/>
-              </chakra.div>
-            </Hide>
-          )
-        }
+      }
+      {
+        currentPage < pages && (
+          <chakra.div
+            as={NextLink}
+            p={3}
+            href={`${path}?page=${currentPage + 1}`}
+          >
+            
+            <Image src="/images/chevron_right.svg" alt="next"/>
+          </chakra.div>
+        )
+      }
     </Flex>
   );
 }

@@ -9,9 +9,11 @@ interface ImageWithFallbackProps extends InputProps {
 export default function ImageWithFallback({
   src,
   alt,
+  width,
   className,
   defaultHeight,
-  defaultWidth
+  defaultWidth,
+  objectFit
 }: ImageWithFallbackProps) {
   const defaultImageSrc = `https://fakeimg.pl/${defaultHeight}x${defaultWidth}?text=No+image+found`;
   const [imgSrc, setImgSrc] = useState(src || defaultImageSrc);
@@ -25,8 +27,9 @@ export default function ImageWithFallback({
       className={className}
       src={imgSrc}
       alt={alt}
+      width={width}
       onError={handleImageError}
-      objectFit="cover"
+      objectFit={objectFit}
     />
   );
 }

@@ -11,12 +11,26 @@ export interface IReview{
 
 export interface IReviewList{
   reviews: IReview[];
+  meta?: {
+    pagination: {
+      count: number;
+      items: number;
+      page: number;
+      pages: number;
+    };
+  };
 }
 
 export interface IReviewProps{
   reviews: IReview[];
   show: IShow;
   onAddReview: (review: IReview) => void;
+  pagination?: {
+    count: number;
+    items: number;
+    page: number;
+    pages: number;
+  }
 }
 
 export interface IReviewFormProps{

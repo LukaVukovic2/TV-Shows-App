@@ -1,7 +1,6 @@
 'use client';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import LoadingSpinner from '@/components/core/LoadingSpinner/LoadingSpinner';
 
 export default function Home(){
   const { replace } = useRouter();
@@ -9,5 +8,5 @@ export default function Home(){
     replace('/all-shows');
   }, []);
 
-  return <LoadingSpinner/>;
+  return null;
 };

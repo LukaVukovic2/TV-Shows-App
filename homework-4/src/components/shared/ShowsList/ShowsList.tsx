@@ -18,7 +18,6 @@ export default function ShowsList({shows, pagination}: IShowListProps) {
     <>
       <Flex
         wrap="wrap"
-        gap={8}
         justifyContent={["center", "center", "center", "flex-start"]}
       >
         {
@@ -29,8 +28,8 @@ export default function ShowsList({shows, pagination}: IShowListProps) {
             />
           ))
         }
+        {pagination && <Pagination pagination={pagination} />}
       </Flex>
-      {pagination && <Pagination pagination={pagination} />}
     </>
   );
 }

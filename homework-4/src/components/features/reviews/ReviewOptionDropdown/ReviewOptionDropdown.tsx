@@ -24,6 +24,7 @@ import { IReview, IReviewItemProps } from "@/typings/review";
 export default function ReviewOptionDropdown({review}: IReviewItemProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
+  const items = "5";
 
   const { trigger: deleteTrigger } = useSWRMutation(
     swrKeys.deleteReview(review.id as string),
@@ -36,7 +37,7 @@ export default function ReviewOptionDropdown({review}: IReviewItemProps) {
           duration: 3000,
           isClosable: true,
         });
-        mutate(swrKeys.getReviews(review.show_id));
+        mutate(swrKeys.getReviews(review.show_id, "1", items));
         mutate(swrKeys.getShow(review.show_id));
       },
     }
@@ -52,7 +53,7 @@ export default function ReviewOptionDropdown({review}: IReviewItemProps) {
           duration: 3000,
           isClosable: true,
         });
-        mutate(swrKeys.getReviews(review.show_id));
+        mutate(swrKeys.getReviews(review.show_id, "1", items));
         mutate(swrKeys.getShow(review.show_id));
         onClose();
       },

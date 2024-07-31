@@ -1,8 +1,9 @@
 .header {
-  height: calc(100vh - 88px);
+  height: calc(100vh - 64px);
   position: sticky;
   flex-direction: column;
   top: 32px;
+  max-height: 1300px;
 }
 
 @media (max-width: 991.9px) {

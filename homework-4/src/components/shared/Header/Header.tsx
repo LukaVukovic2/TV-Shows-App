@@ -1,10 +1,13 @@
 import LogoImage from "@/components/core/LogoImage/LogoImage";
 import SidebarNavigation from "../SidebarNavigation/SidebarNavigation";
-import { Flex, Hide, Show } from "@chakra-ui/react";
+import { Flex, useMediaQuery } from "@chakra-ui/react";
 import SidebarNavigationDrawer from "../SidebarNavigationDrawer/SidebarNavigationDrawer";
 import styles from "./Header.module.css";
 
 export default function Header() {
+  const [isSmallerScreen] = useMediaQuery("(max-width: 991.9px)");
+  const [isLargerScreen] = useMediaQuery("(min-width: 992px)");
+
   return (
     <Flex
       className={styles.header}
@@ -16,12 +19,8 @@ export default function Header() {
       py={{base: 4, lg: 0}}
     >
       <LogoImage width={199} />
-      <Show above='lg'>
-        <SidebarNavigation />
-      </Show>
-      <Hide above='lg'>
-        <SidebarNavigationDrawer />
-      </Hide>
+      {isSmallerScreen && <SidebarNavigationDrawer />}
+      {isLargerScreen && <SidebarNavigation />}
     </Flex>
   );
 }

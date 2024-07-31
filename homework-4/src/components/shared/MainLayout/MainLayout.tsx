@@ -11,7 +11,7 @@ import ShowDetails from "@/components/features/shows/ShowDetails/ShowDetails";
 import LoadingSpinner from "@/components/core/LoadingSpinner/LoadingSpinner";
 import { IReview, IReviewList } from "@/typings/review";
 import { IShow } from "@/typings/show";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 
 interface IApiShowResponse {
   show: IShow;
@@ -20,20 +20,28 @@ interface IApiShowResponse {
 export default function MainLayout() {
   const { id } = useParams<{ id: string }>();
   const toast = useToast();
+  const searchParams = useSearchParams();
+  const currentPage = searchParams.get('page') || '1';
+  const items = "5"
   
   const {
     data: showData,
     error: errorShow,
     isLoading: isLoadingShow
-  } = useSWR<IApiShowResponse>(swrKeys.getShow(id), fetcher);
+  } = useSWR<IApiShowResponse>(swrKeys.getShow(id), fetcher, {
+    revalidateOnFocus: false
+  });
   const show = showData?.show as IShow;
 
   const {
     data: reviewData,
     error: errorReview,
     isLoading: isLoadingReview,
-  } = useSWR<IReviewList>(swrKeys.getReviews(id), fetcher);
+  } = useSWR<IReviewList>(swrKeys.getReviews(id, currentPage, items), fetcher, {
+    revalidateOnFocus: false
+  });
   const reviews: IReview[] = reviewData?.reviews || [];
+  const pagination = reviewData?.meta?.pagination;
   
   const { trigger: addTrigger } = useSWRMutation(
     swrKeys.createReview,
@@ -47,7 +55,7 @@ export default function MainLayout() {
           isClosable: true,
         });
         mutate(swrKeys.getShow(id));
-        mutate(swrKeys.getReviews(id));;
+        mutate(swrKeys.getReviews(id, currentPage, items));;
       },
     }
   );
@@ -68,6 +76,7 @@ export default function MainLayout() {
         reviews={reviews}
         show={show}
         onAddReview={onAddReview}
+        pagination={pagination}
       />
     </chakra.main>
   );
