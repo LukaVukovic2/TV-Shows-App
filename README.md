@@ -1,3 +1,2 @@
 # React Academy 2024
-
-React Academy 2024 assignments repository
+Project made as part of Infinum Academy - React course with assistance of mentors
