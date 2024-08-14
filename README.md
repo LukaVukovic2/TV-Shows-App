@@ -1,6 +1,10 @@
 # TV Shows App
 
-An web application in which you can browse and rate various TV shows.
+An <a href="https://tv-shows-app-one.vercel.app/my-profile" target="_blank">web application</a> in which you can browse and rate various TV shows.
+
+# Demo
+
+<img src="https://github.com/user-attachments/assets/c32100a1-95fa-44eb-a2b1-dfb3dba0a919" alt="demo gif" width="500px" >
 
 # Tech Stack
 
@@ -35,14 +39,6 @@ An web application in which you can browse and rate various TV shows.
   </tr>
 </table>
 
-
-# Project Screenshots
-
-<img src="https://github.com/user-attachments/assets/29a03f19-d836-4215-8685-68d03ce0278e" alt="" height="150px" >
-<img src="https://github.com/user-attachments/assets/802d1180-0f0c-4e4c-804a-9e5f60f90fea" alt="" height="150px">
-<img src="https://github.com/user-attachments/assets/c1e95737-9ca0-4884-a70f-76558439cb1c" alt="" height="150px">
-<img src="https://github.com/user-attachments/assets/70ff7440-ea5b-4095-b1f4-37142aaaeec6" alt="" height="150px">
-
 # Installation and Setup Instructions
 
 Clone down this repository. You will need node and npm installed globally on your machine.
@@ -72,4 +68,4 @@ One of the main challenges was understanding how useSWR(Mutation) hooks work beh
 
 # License
 
-Distributed under the MIT License. See <code style="color : grey">LICENSE.txt</code> for more information.
+Distributed under the MIT License. See <code style="color : grey">LICENSE</code> for more information.
