@@ -1,6 +1,6 @@
 # TV Shows App
 
-An <a href="https://tv-shows-app-one.vercel.app/my-profile" target="_blank">web application</a> in which you can browse and rate various TV shows.
+An <a href="https://tv-shows-app-one.vercel.app" target="_blank">web application</a> in which you can browse and rate various TV shows.
 
 # Demo
 
